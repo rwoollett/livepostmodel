@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
-# TicTacToe services model structures (to enable using model structures in other applications)
-add_library(TTTModel
-  TicTacToe.cpp
-  TicTacToe.h
+# LivePostsModel services model structures (to enable using model structures in other applications)
+add_library(LivePostsModel
+  LivePosts.cpp
+  LivePosts.h
   Events.h
   events/Actions.h
   events/json.h
@@ -17,7 +17,7 @@ add_library(TTTModel
 
 
 target_include_directories(
-  TTTModel PUBLIC 
+  LivePostsModel PUBLIC 
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..
   $<INSTALL_INTERFACE:include>
 )

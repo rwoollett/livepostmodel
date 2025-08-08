@@ -1,6 +1,6 @@
 #pragma once
 
-#include "TicTacToe.h"
+#include "LivePosts.h"
 
 #ifdef LIBPQ_FOUND
 #include <libpq-fe.h>
