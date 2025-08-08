@@ -6,7 +6,7 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-namespace TTTEvents
+namespace LivePostsEvents
 {
 
   inline void to_json(json &jsonOut, GameUpdateByIdEvent const &value)
@@ -39,7 +39,7 @@ namespace TTTEvents
     json obj;
     obj["gameId"] = value.gameId;
     obj["board"] = value.board;
-    obj["createdAt"] = TTTModel::formatDate(value.tpCreatedAt);
+    obj["createdAt"] = LivePostsModel::formatDate(value.tpCreatedAt);
     jsonOut["payload"] = obj;
     if (value.subject != Subject::GameCreate)
     {
@@ -56,7 +56,7 @@ namespace TTTEvents
     value.subject = SubjectFromNames.at(subject);
     obj.at("gameId").get_to(value.gameId);
     obj.at("board").get_to(value.board);
-    auto tpOptCA = TTTModel::parseDate(value.createdAt);
+    auto tpOptCA = LivePostsModel::parseDate(value.createdAt);
     if (tpOptCA)
       value.tpCreatedAt = *tpOptCA;
   };

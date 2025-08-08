@@ -12,7 +12,7 @@
 #define D(x) x
 #endif
 
-namespace TTTModel
+namespace LivePostsModel
 {
 
   constexpr auto FORMAT_DATE = "%Y-%m-%d %H:%M:%S";

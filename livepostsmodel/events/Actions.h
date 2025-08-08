@@ -6,7 +6,7 @@
 #include <string>
 #include <chrono>
 
-namespace TTTEvents
+namespace LivePostsEvents
 {
   struct GameUpdateByIdEvent
   {

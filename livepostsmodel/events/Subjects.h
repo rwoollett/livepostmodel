@@ -6,7 +6,7 @@
 #include <map>
 #include <string_view>
 
-namespace TTTEvents
+namespace LivePostsEvents
 {
   
   enum class Subject

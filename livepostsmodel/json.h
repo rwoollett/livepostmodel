@@ -1,12 +1,12 @@
 #pragma once
 
-#include "TicTacToe.h"
+#include "LivePosts.h"
 #include "timestamp.h"
 #include <string>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-namespace TTTModel
+namespace LivePostsModel
 {
 
   inline void to_json(json &jsonOut, Game const &value)
@@ -14,7 +14,7 @@ namespace TTTModel
     jsonOut["id"] = value.id;
     jsonOut["userId"] = value.userId;
     jsonOut["board"] = value.board;
-    jsonOut["createdAt"] = TTTModel::formatDate(value.tpCreatedAt);
+    jsonOut["createdAt"] = LivePostsModel::formatDate(value.tpCreatedAt);
   }
 
   inline void from_json(json const &jsonIn, Game &value)
@@ -31,7 +31,7 @@ namespace TTTModel
     if (jsonIn.contains("createdAt"))
     {
       jsonIn.at("createdAt").get_to(value.createdAt);
-      auto tpOptCA = TTTModel::parseDate(value.createdAt);
+      auto tpOptCA = LivePostsModel::parseDate(value.createdAt);
       if (tpOptCA)
         value.tpCreatedAt = *tpOptCA;
     }

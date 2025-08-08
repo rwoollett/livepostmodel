@@ -9,7 +9,7 @@
 #include <iostream>
 #include <chrono>
 
-namespace TTTModel
+namespace LivePostsModel
 {
 
   // Define a struct to encapsulate Game table insert, update and query
@@ -54,10 +54,10 @@ namespace TTTModel
 
   namespace Validate
   {
-    bool Game(const TTTModel::Game &o);
-    bool GameStart(const TTTModel::GameStart &o);
-    bool GameUpdate(const TTTModel::GameUpdate &o);
-    bool PlayerMove(const TTTModel::PlayerMove &o);
+    bool Game(const LivePostsModel::Game &o);
+    bool GameStart(const LivePostsModel::GameStart &o);
+    bool GameUpdate(const LivePostsModel::GameUpdate &o);
+    bool PlayerMove(const LivePostsModel::PlayerMove &o);
   }
   
 }

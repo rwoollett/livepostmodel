@@ -6,7 +6,7 @@
 #include <chrono>
 #include <optional>
 
-namespace TTTModel
+namespace LivePostsModel
 {
 
   template <typename... Args>

@@ -9,7 +9,7 @@
 #endif
 
 #ifdef LIBPQ_FOUND
-namespace TTTModel::PG
+namespace LivePostsModel::PG
 {
   std::unordered_map<std::string, int> mapFieldCols(PGresult *res, int nCols)
   {
@@ -34,9 +34,9 @@ namespace TTTModel::PG
     return std::string(PQgetvalue(res, rowIndex, fieldColumns.at(key)));
   };
 
-  TTTModel::Game Game::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  LivePostsModel::Game Game::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
-    TTTModel::Game game{};
+    LivePostsModel::Game game{};
     try
     {
       auto fieldColumns = mapFieldCols(res, nCols);
@@ -50,7 +50,7 @@ namespace TTTModel::PG
       game.board = getString("board");
       game.userId = getString("userId");
       game.createdAt = getString("createdAt");
-      auto tpOptCA = TTTModel::parseDate(getString("createdAt"));
+      auto tpOptCA = LivePostsModel::parseDate(getString("createdAt"));
       if (tpOptCA)
         game.tpCreatedAt = *tpOptCA;
     }
@@ -66,10 +66,10 @@ namespace TTTModel::PG
     return game;
   }
 
-  TTTModel::PlayerMove PlayerMove::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  LivePostsModel::PlayerMove PlayerMove::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
 
-    TTTModel::PlayerMove playerMove{};
+    LivePostsModel::PlayerMove playerMove{};
     auto fieldColumns = mapFieldCols(res, nCols);
     auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
     {

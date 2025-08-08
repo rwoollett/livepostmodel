@@ -1,26 +1,26 @@
 #include "LivePosts.h"
 
-namespace TTTModel
+namespace LivePostsModel
 {
 
-  bool Validate::Game(const TTTModel::Game &o)
+  bool Validate::Game(const LivePostsModel::Game &o)
   {
     return !(o.userId.empty());
   }
 
-  bool Validate::GameStart(const TTTModel::GameStart &o)
+  bool Validate::GameStart(const LivePostsModel::GameStart &o)
   {
     return !(o.gameId.empty());
   }
 
-  bool Validate::GameUpdate(const TTTModel::GameUpdate &o)
+  bool Validate::GameUpdate(const LivePostsModel::GameUpdate &o)
   {
     return !(o.board.empty() ||
              o.result.empty() ||
              o.gameId.empty());
   }
 
-  bool Validate::PlayerMove(const TTTModel::PlayerMove &o)
+  bool Validate::PlayerMove(const LivePostsModel::PlayerMove &o)
   {
     return ((o.player == 1 || o.player == 2) &&
             (o.moveCell > 0 && o.moveCell < 10) &&
