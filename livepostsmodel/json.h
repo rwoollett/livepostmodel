@@ -24,7 +24,6 @@ namespace LivePostsModel
     reactions["rocket"] = value.rocket;
     reactions["eyes"] = value.eyes;
     jsonOut["reactions"] = reactions;
-
   }
 
   inline void from_json(json const &jsonIn, Post &value)
@@ -43,12 +42,15 @@ namespace LivePostsModel
       if (tpOptD)
         value.tpDate = *tpOptD;
     }
-    json reactions = jsonIn.at("reactions");
-    reactions.at("thumbsUp").get_to(value.thumbsUp);
-    reactions.at("hooray").get_to(value.hooray);
-    reactions.at("heart").get_to(value.heart);
-    reactions.at("rocket").get_to(value.rocket);
-    reactions.at("eyes").get_to(value.eyes);
+    if (jsonIn.contains("reactions"))
+    {
+      json reactions = jsonIn.at("reactions");
+      reactions.at("thumbsUp").get_to(value.thumbsUp);
+      reactions.at("hooray").get_to(value.hooray);
+      reactions.at("heart").get_to(value.heart);
+      reactions.at("rocket").get_to(value.rocket);
+      reactions.at("eyes").get_to(value.eyes);
+    }
   };
 
 } // namespace
