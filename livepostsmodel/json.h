@@ -39,7 +39,7 @@ namespace LivePostsModel
       jsonIn.at("date").get_to(value.date);
       auto tpOptD = LivePostsModel::parseDate(value.date);
       if (tpOptD)
-        value.tpCreatedAt = *tpOptD;
+        value.tpDate = *tpOptD;
     }
 
     jsonIn.at("thumbsUp").get_to(value.thumbsUp);
