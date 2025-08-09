@@ -34,9 +34,9 @@ namespace LivePostsModel::PG
     return std::string(PQgetvalue(res, rowIndex, fieldColumns.at(key)));
   };
 
-  LivePostsModel::Game Game::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  LivePostsModel::Post Post::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
-    LivePostsModel::Game game{};
+    LivePostsModel::Post post{};
     try
     {
       auto fieldColumns = mapFieldCols(res, nCols);
@@ -45,14 +45,19 @@ namespace LivePostsModel::PG
         return getStringFromResRowByKey(res, rowIndex, fieldColumns, key);
       };
 
-      // D(std::cerr << "connected bool from pq: " << getString("connected") << std::endl;)
-      game.id = getString("id");
-      game.board = getString("board");
-      game.userId = getString("userId");
-      game.createdAt = getString("createdAt");
-      auto tpOptCA = LivePostsModel::parseDate(getString("createdAt"));
-      if (tpOptCA)
-        game.tpCreatedAt = *tpOptCA;
+      post.id = getString("id");
+      post.title = getString("title");
+      post.content = getString("content");
+      post.user = getString("user");
+      post.date = getString("date");
+      auto tpOptD = LivePostsModel::parseDate(getString("date"));
+      if (tpOptD)
+        post.tpDate = *tpOptD;
+      post.thumbsUp = std::atoi(getString("thumbsUp").c_str());
+      post.hooray = std::atoi(getString("hooray").c_str());
+      post.heart = std::atoi(getString("heart").c_str());
+      post.rocket = std::atoi(getString("rocket").c_str());
+      post.eyes = std::atoi(getString("eyes").c_str());
     }
     catch (const std::string &e)
     {
@@ -63,39 +68,7 @@ namespace LivePostsModel::PG
       throw "error in fromPQRes";
     }
 
-    return game;
-  }
-
-  LivePostsModel::PlayerMove PlayerMove::fromPGRes(PGresult *res, int nCols, int rowIndex)
-  {
-
-    LivePostsModel::PlayerMove playerMove{};
-    auto fieldColumns = mapFieldCols(res, nCols);
-    auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
-    {
-      return getStringFromResRowByKey(res, rowIndex, fieldColumns, key);
-    };
-
-    try
-    {
-      playerMove.id = getString("id");
-      playerMove.gameId = getString("gameId");
-      playerMove.board = getString("board");
-      playerMove.isOpponentStart = (getString("isOpponentStart") == "t");
-      playerMove.allocated = (getString("allocated") == "t");
-      playerMove.player = std::atoi(getString("player").c_str());
-      playerMove.moveCell = std::atoi(getString("moveCell").c_str());
-    }
-    catch (const std::string &e)
-    {
-      throw e;
-    }
-    catch (...)
-    {
-      throw "error in fromConnectPQRes";
-    }
-
-    return playerMove;
+    return post;
   }
 
 } // namespace Model::PG

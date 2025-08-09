@@ -12,53 +12,28 @@
 namespace LivePostsModel
 {
 
-  // Define a struct to encapsulate Game table insert, update and query
-  struct Game
+  // Define a struct to encapsulate Post table insert, update and query
+  struct Post
   {
     std::string id;
-    std::string userId;
-    std::string board;
-    std::string createdAt;
-    std::chrono::system_clock::time_point tpCreatedAt{};
+    std::string title;
+    std::string content;
+    std::string user;
+    std::string date;
+    std::chrono::system_clock::time_point tpDate{};
+    int thumbsUp;
+    int hooray;
+    int heart;
+    int rocket;
+    int eyes;
 
-    Game() = default;
-  };
-
-  struct GameStart
-  {
-    std::string gameId;
-    GameStart() = default;
-  };
-
-  struct GameUpdate
-  {
-    std::string gameId;
-    std::string board;
-    std::string result;
-    GameUpdate() = default;
-  };
-
-  // Define a struct to encapsulate PlayerMove table insert, update and query
-  struct PlayerMove
-  {
-    std::string id;
-    std::string gameId;
-    int player;
-    int moveCell;
-    bool isOpponentStart;
-    bool allocated;
-    std::string board;
-
-    PlayerMove() = default;
+    Post() = default;
   };
 
   namespace Validate
   {
-    bool Game(const LivePostsModel::Game &o);
-    bool GameStart(const LivePostsModel::GameStart &o);
-    bool GameUpdate(const LivePostsModel::GameUpdate &o);
-    bool PlayerMove(const LivePostsModel::PlayerMove &o);
+    bool Post(const LivePostsModel::Post &o);
   }
-  
+
 }
 #endif // MODEL_TTT_H

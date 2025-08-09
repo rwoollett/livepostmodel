@@ -6,16 +6,10 @@
 #include <libpq-fe.h>
 namespace LivePostsModel::PG
 {
-  namespace Game
+  namespace Post
   {
-    LivePostsModel::Game fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
+    LivePostsModel::Post fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
   }
-
-  namespace PlayerMove
-  {
-    LivePostsModel::PlayerMove fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
-  }
-
 
 } // namespace Model
 #endif //LIBPQ_FOUND
