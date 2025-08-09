@@ -17,11 +17,13 @@ namespace LivePostsModel
     jsonOut["user"] = value.user;
     jsonOut["date"] = LivePostsModel::formatDate(value.tpDate);
 
-    jsonOut["thumbsUp"] = value.thumbsUp;
-    jsonOut["hooray"] = value.hooray;
-    jsonOut["heart"] = value.heart;
-    jsonOut["rocket"] = value.rocket;
-    jsonOut["eyes"] = value.eyes;
+    json reactions;
+    reactions["thumbsUp"] = value.thumbsUp;
+    reactions["hooray"] = value.hooray;
+    reactions["heart"] = value.heart;
+    reactions["rocket"] = value.rocket;
+    reactions["eyes"] = value.eyes;
+    jsonOut["reactions"] = reactions;
 
   }
 
@@ -41,12 +43,12 @@ namespace LivePostsModel
       if (tpOptD)
         value.tpDate = *tpOptD;
     }
-
-    jsonIn.at("thumbsUp").get_to(value.thumbsUp);
-    jsonIn.at("hooray").get_to(value.hooray);
-    jsonIn.at("heart").get_to(value.heart);
-    jsonIn.at("rocket").get_to(value.rocket);
-    jsonIn.at("eyes").get_to(value.eyes);
+    json reactions = jsonIn.at("reactions");
+    reactions.at("thumbsUp").get_to(value.thumbsUp);
+    reactions.at("hooray").get_to(value.hooray);
+    reactions.at("heart").get_to(value.heart);
+    reactions.at("rocket").get_to(value.rocket);
+    reactions.at("eyes").get_to(value.eyes);
   };
 
 } // namespace
