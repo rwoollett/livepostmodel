@@ -15,10 +15,10 @@ namespace LivePostsModel
   // Define a struct to encapsulate Post table insert, update and query
   struct Post
   {
-    std::string id;
+    int id;
     std::string title;
     std::string content;
-    std::string user;
+    int userId;
     std::string date;
     std::chrono::system_clock::time_point tpDate{};
     int thumbsUp;
@@ -30,9 +30,19 @@ namespace LivePostsModel
     Post() = default;
   };
 
+  struct User
+  {
+    int id;
+    std::string authId;
+    std::string name;
+
+    User() = default;
+  };
+
   namespace Validate
   {
-    bool Post(const LivePostsModel::Post &o);
+    bool Posts(const LivePostsModel::Post &o);
+    bool Users(const LivePostsModel::User &o);
   }
 
 }

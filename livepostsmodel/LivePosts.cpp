@@ -3,9 +3,14 @@
 namespace LivePostsModel
 {
 
-  bool Validate::Post(const LivePostsModel::Post &o)
+  bool Validate::Posts(const LivePostsModel::Post &o)
   {
-    return !(o.title.empty() || o.content.empty() || o.user.empty());
+    return !(o.title.empty() || o.content.empty() || o.userId < 0);
+  }
+
+  bool Validate::Users(const LivePostsModel::User &o)
+  {
+    return !(o.name.empty() || o.authId.empty());
   }
 
 }

@@ -34,7 +34,7 @@ namespace LivePostsModel::PG
     return std::string(PQgetvalue(res, rowIndex, fieldColumns.at(key)));
   };
 
-  LivePostsModel::Post Post::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  LivePostsModel::Post Posts::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
     LivePostsModel::Post post{};
     try
@@ -45,10 +45,10 @@ namespace LivePostsModel::PG
         return getStringFromResRowByKey(res, rowIndex, fieldColumns, key);
       };
 
-      post.id = getString("id");
+      post.id = std::atoi(getString("id").c_str());
       post.title = getString("title");
       post.content = getString("content");
-      post.user = getString("user");
+      post.userId = std::atoi(getString("userId").c_str());
       post.date = getString("date");
       auto tpOptD = LivePostsModel::parseDate(getString("date"));
       if (tpOptD)
@@ -69,6 +69,34 @@ namespace LivePostsModel::PG
     }
 
     return post;
+  }
+
+  
+  LivePostsModel::User Users::fromPGRes(PGresult *res, int nCols, int rowIndex)
+  {
+    LivePostsModel::User user{};
+    try
+    {
+      auto fieldColumns = mapFieldCols(res, nCols);
+      auto const getString = [res, rowIndex, &fieldColumns](const std::string &key)
+      {
+        return getStringFromResRowByKey(res, rowIndex, fieldColumns, key);
+      };
+
+      user.id = std::atoi(getString("id").c_str());
+      user.authId = getString("authId");
+      user.name = getString("name");
+    }
+    catch (const std::string &e)
+    {
+      throw e;
+    }
+    catch (...)
+    {
+      throw "error in fromPQRes";
+    }
+
+    return user;
   }
 
 } // namespace Model::PG

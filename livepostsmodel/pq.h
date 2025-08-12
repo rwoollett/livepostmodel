@@ -6,9 +6,13 @@
 #include <libpq-fe.h>
 namespace LivePostsModel::PG
 {
-  namespace Post
+  namespace Posts
   {
     LivePostsModel::Post fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
+  }
+  namespace Users
+  {
+    LivePostsModel::User fromPGRes(PGresult *res, int nCols, int rowIndex = 0);
   }
 
 } // namespace Model

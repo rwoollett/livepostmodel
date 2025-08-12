@@ -14,7 +14,7 @@ namespace LivePostsModel
     jsonOut["id"] = value.id;
     jsonOut["title"] = value.title;
     jsonOut["content"] = value.content;
-    jsonOut["user"] = value.user;
+    jsonOut["userId"] = value.userId;
     jsonOut["date"] = LivePostsModel::formatDate(value.tpDate);
 
     json reactions;
@@ -34,7 +34,7 @@ namespace LivePostsModel
     }
     jsonIn.at("title").get_to(value.title);
     jsonIn.at("content").get_to(value.content);
-    jsonIn.at("user").get_to(value.user);
+    jsonIn.at("userId").get_to(value.userId);
     if (jsonIn.contains("date"))
     {
       jsonIn.at("date").get_to(value.date);
@@ -51,6 +51,24 @@ namespace LivePostsModel
       reactions.at("rocket").get_to(value.rocket);
       reactions.at("eyes").get_to(value.eyes);
     }
+  };
+
+  
+  inline void to_json(json &jsonOut, User const &value)
+  {
+    jsonOut["id"] = value.id;
+    jsonOut["name"] = value.name;
+    jsonOut["authId"] = value.authId;
+  }
+
+  inline void from_json(json const &jsonIn, User &value)
+  {
+    if (jsonIn.contains("id"))
+    {
+      jsonIn.at("id").get_to(value.id);
+    }
+    jsonIn.at("name").get_to(value.name);
+    jsonIn.at("authId").get_to(value.authId);
   };
 
 } // namespace
