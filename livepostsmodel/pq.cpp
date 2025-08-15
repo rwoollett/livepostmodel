@@ -49,6 +49,7 @@ namespace LivePostsModel::PG
       post.title = getString("title");
       post.content = getString("content");
       post.userId = std::atoi(getString("userId").c_str());
+      post.userName = std::atoi(getString("userName").c_str());
       post.date = getString("date");
       auto tpOptD = LivePostsModel::parseDate(getString("date"));
       if (tpOptD)

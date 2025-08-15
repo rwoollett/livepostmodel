@@ -15,6 +15,7 @@ namespace LivePostsModel
     jsonOut["title"] = value.title;
     jsonOut["content"] = value.content;
     jsonOut["userId"] = value.userId;
+    jsonOut["userName"] = value.userName;
     jsonOut["date"] = LivePostsModel::formatDate(value.tpDate);
 
     json reactions;
@@ -35,6 +36,7 @@ namespace LivePostsModel
     jsonIn.at("title").get_to(value.title);
     jsonIn.at("content").get_to(value.content);
     jsonIn.at("userId").get_to(value.userId);
+    jsonIn.at("userName").get_to(value.userName);
     if (jsonIn.contains("date"))
     {
       jsonIn.at("date").get_to(value.date);

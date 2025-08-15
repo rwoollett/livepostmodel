@@ -19,6 +19,7 @@ namespace LivePostsModel
     std::string title;
     std::string content;
     int userId;
+    std::string userName;
     std::string date;
     std::chrono::system_clock::time_point tpDate{};
     int thumbsUp;
