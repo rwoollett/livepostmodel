@@ -59,6 +59,9 @@ namespace LivePostsModel::PG
       post.heart = std::atoi(getString("heart").c_str());
       post.rocket = std::atoi(getString("rocket").c_str());
       post.eyes = std::atoi(getString("eyes").c_str());
+      post.live = (getString("live") == "t");
+      post.allocated = (getString("allocated") == "t");
+
     }
     catch (const std::string &e)
     {

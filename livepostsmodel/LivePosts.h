@@ -27,6 +27,8 @@ namespace LivePostsModel
     int heart;
     int rocket;
     int eyes;
+    bool live;
+    bool allocated;
 
     Post() = default;
   };

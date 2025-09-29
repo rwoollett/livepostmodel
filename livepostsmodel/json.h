@@ -25,6 +25,10 @@ namespace LivePostsModel
     reactions["rocket"] = value.rocket;
     reactions["eyes"] = value.eyes;
     jsonOut["reactions"] = reactions;
+
+    jsonOut["live"] = value.live;
+    jsonOut["allocated"] = value.allocated;
+
   }
 
   inline void from_json(json const &jsonIn, Post &value)
@@ -56,6 +60,10 @@ namespace LivePostsModel
       reactions.at("rocket").get_to(value.rocket);
       reactions.at("eyes").get_to(value.eyes);
     }
+
+    jsonIn.at("live").get_to(value.live);
+    jsonIn.at("allocated").get_to(value.allocated);
+
   };
 
   
