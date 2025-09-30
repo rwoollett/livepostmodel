@@ -1,6 +1,6 @@
 
-#ifndef EVENT_TTT_SUBJECTS_H
-#define EVENT_TTT_SUBJECTS_H
+#ifndef EVENT_LIVEPOST_SUBJECTS_H
+#define EVENT_LIVEPOST_SUBJECTS_H
 
 #include <string>
 #include <map>
@@ -12,20 +12,17 @@ namespace LivePostsEvents
   enum class Subject
   {
     Invalid = -1,
-    GameUpdateById,
-    GameCreate,
-    PlayerMove
+    PostCreate,
+    PostStage
   };
 
   static const std::map<Subject, std::string_view> SubjectNames = {
-      {Subject::GameUpdateById, "game_Update"},
-      {Subject::GameCreate, "game_Create"},
-      {Subject::PlayerMove, "player_Move"}};
+      {Subject::PostCreate, "post_Create"},
+      {Subject::PostStage, "post_Stage"}};
 
   static const std::map<std::string_view, Subject> SubjectFromNames = {
-      {"game_Update", Subject::GameUpdateById},
-      {"game_Create", Subject::GameCreate},
-      {"player_Move", Subject::PlayerMove}};
+      {"post_Create", Subject::PostCreate},
+      {"post_Stage", Subject::PostStage}};
 
 }
-#endif // EVENT_TTT_SUBJECTS_H
+#endif // EVENT_LIVEPOST_SUBJECTS_H

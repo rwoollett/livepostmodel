@@ -1,6 +1,6 @@
 
-#ifndef EVENT_TTT_ACTIONS_H
-#define EVENT_TTT_ACTIONS_H
+#ifndef EVENT_LIVEPOST_ACTIONS_H
+#define EVENT_LIVEPOST_ACTIONS_H
 
 #include "Subjects.h"
 #include <string>
@@ -8,36 +8,28 @@
 
 namespace LivePostsEvents
 {
-  struct GameUpdateByIdEvent
+
+  struct PostCreateEvent
   {
-    Subject subject{Subject::GameUpdateById};
-    std::string gameId;
-    std::string board;
-    std::string result;
-    GameUpdateByIdEvent() = default;
+    Subject subject{Subject::PostCreate};
+    int id;
+    int userId;
+    std::string title;
+    std::string userName;
+    bool live;
+    bool allocated;
+    
+    PostCreateEvent() = default;
   };
 
-  struct GameCreateEvent
+  struct PostStageEvent
   {
-    Subject subject{Subject::GameCreate};
-    std::string gameId;
-    std::string board;
-    std::string createdAt;
-    std::chrono::system_clock::time_point tpCreatedAt{};
-    GameCreateEvent() = default;
-  };
+    Subject subject{Subject::PostStage};
+    int id;
+    std::string slug;
 
-  struct PlayerMoveEvent
-  {
-    Subject subject{Subject::PlayerMove};
-    std::string id;
-    std::string gameId;
-    std::string board;
-    int player;
-    int moveCell;
-    bool isOpponentStart;
-    PlayerMoveEvent() = default;
+    PostStageEvent() = default;
   };
 
 }
-#endif // EVENT_TTT_ACTIONS_H
+#endif // EVENT_LIVEPOST_ACTIONS_H

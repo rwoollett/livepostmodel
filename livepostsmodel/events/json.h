@@ -9,90 +9,76 @@ using json = nlohmann::json;
 namespace LivePostsEvents
 {
 
-  inline void to_json(json &jsonOut, GameUpdateByIdEvent const &value)
+
+  // inline void from_json(json const &jsonIn, GameCreateEvent &value)
+  // {
+  //   json obj = jsonIn.at("payload");
+  //   std::string subject;
+  //   jsonIn.at("subject").get_to(subject);
+  //   value.subject = SubjectFromNames.at(subject);
+  //   obj.at("gameId").get_to(value.gameId);
+  //   obj.at("board").get_to(value.board);
+  //   auto tpOptCA = LivePostsModel::parseDate(value.createdAt);
+  //   if (tpOptCA)
+  //     value.tpCreatedAt = *tpOptCA;
+  // };
+
+  inline void to_json(json &jsonOut, PostCreateEvent const &value)
   {
     json obj;
-    obj["gameId"] = value.gameId;
-    obj["board"] = value.board;
-    obj["result"] = value.result;
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::GameUpdateById)
-    {
-      throw std::string("GameUpdateByIdEvent::to_json - Subject should be GameUpdateById");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, GameUpdateByIdEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-    obj.at("gameId").get_to(value.gameId);
-    obj.at("board").get_to(value.board);
-    obj.at("result").get_to(value.result);
-  };
-
-  inline void to_json(json &jsonOut, GameCreateEvent const &value)
-  {
-    json obj;
-    obj["gameId"] = value.gameId;
-    obj["board"] = value.board;
-    obj["createdAt"] = LivePostsModel::formatDate(value.tpCreatedAt);
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::GameCreate)
-    {
-      throw std::string("GameCreateEvent::to_jsonn - Subject should be GameCreate");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, GameCreateEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-    obj.at("gameId").get_to(value.gameId);
-    obj.at("board").get_to(value.board);
-    auto tpOptCA = LivePostsModel::parseDate(value.createdAt);
-    if (tpOptCA)
-      value.tpCreatedAt = *tpOptCA;
-  };
-
-  inline void to_json(json &jsonOut, PlayerMoveEvent const &value)
-  {
-    json obj;
-    obj["gameId"] = value.gameId;
-    obj["board"] = value.board;
     obj["id"] = value.id;
-    obj["player"] = value.player;
-    obj["moveCell"] = value.moveCell;
-    obj["isOpponentStart"] = value.isOpponentStart;
+    obj["userId"] = value.userId;
+    obj["title"] = value.title;
+    obj["userName"] = value.userName;
+    obj["live"] = value.live;
+    obj["allocated"] = value.allocated;
+
     jsonOut["payload"] = obj;
-    if (value.subject != Subject::PlayerMove)
+    if (value.subject != Subject::PostCreate)
     {
-      throw std::string("PlayerMoveEvent::to_json - Subject should be PlayerMove");
+      throw std::string("PostCreateEvent::to_json - Subject should be PostCreate");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
 
-  inline void from_json(json const &jsonIn, PlayerMoveEvent &value)
+  inline void from_json(json const &jsonIn, PostCreateEvent &value)
   {
     json obj = jsonIn.at("payload");
     std::string subject;
     jsonIn.at("subject").get_to(subject);
     value.subject = SubjectFromNames.at(subject);
-    obj.at("gameId").get_to(value.gameId);
+
     obj.at("id").get_to(value.id);
-    obj.at("player").get_to(value.player);
-    obj.at("moveCell").get_to(value.moveCell);
-    obj.at("isOpponentStart").get_to(value.isOpponentStart);
-    if (obj.contains("board"))
+    obj.at("userId").get_to(value.userId);
+    obj.at("title").get_to(value.title);
+    obj.at("userName").get_to(value.userName);
+    obj.at("live").get_to(value.live);
+    obj.at("allocated").get_to(value.allocated);
+  };
+
+  inline void to_json(json &jsonOut, PostStageEvent const &value)
+  {
+    json obj;
+    obj["id"] = value.id;
+    obj["slug"] = value.slug;
+
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::PostCreate)
     {
-      obj.at("board").get_to(value.board);
+      throw std::string("PostStageEvent::to_json - Subject should be PostStage");
     }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, PostStageEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+
+    obj.at("id").get_to(value.id);
+    obj.at("slug").get_to(value.slug);
   };
 
 } // namespace Events

@@ -1,6 +1,6 @@
 
-#ifndef MODEL_TTT_H
-#define MODEL_TTT_H
+#ifndef MODEL_LIVEPOST_H
+#define MODEL_LIVEPOST_H
 
 #include <string>
 #include <map>
@@ -49,4 +49,4 @@ namespace LivePostsModel
   }
 
 }
-#endif // MODEL_TTT_H
+#endif // MODEL_LIVEPOST_H

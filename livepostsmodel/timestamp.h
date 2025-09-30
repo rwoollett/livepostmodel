@@ -1,5 +1,5 @@
-#ifndef MODEL_TTT_TIMESTAMP_H
-#define MODEL_TTT_TIMESTAMP_H
+#ifndef MODEL_LIVEPOST_TIMESTAMP_H
+#define MODEL_LIVEPOST_TIMESTAMP_H
 
 #include <string>
 #include <sstream>
@@ -24,4 +24,4 @@ namespace LivePostsModel
 
 }
 
-#endif // MODEL_TTT_TIMESTAMP_H
+#endif // MODEL_LIVEPOST_TIMESTAMP_H
