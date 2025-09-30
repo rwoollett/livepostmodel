@@ -61,8 +61,14 @@ namespace LivePostsModel
       reactions.at("eyes").get_to(value.eyes);
     }
 
-    jsonIn.at("live").get_to(value.live);
-    jsonIn.at("allocated").get_to(value.allocated);
+    if (jsonIn.contains("live"))
+    {
+      jsonIn.at("live").get_to(value.live);
+    }
+    if (jsonIn.contains("allocated"))
+    {
+      jsonIn.at("allocated").get_to(value.allocated);
+    }
 
   };
 
