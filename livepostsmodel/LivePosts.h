@@ -33,6 +33,14 @@ namespace LivePostsModel
     Post() = default;
   };
 
+  struct PostStage
+  {
+    int postId;
+    bool live{false};
+
+    PostStage() = default;
+  };
+
   struct User
   {
     int id;
