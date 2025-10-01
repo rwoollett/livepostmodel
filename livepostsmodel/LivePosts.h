@@ -53,6 +53,7 @@ namespace LivePostsModel
   namespace Validate
   {
     bool Posts(const LivePostsModel::Post &o);
+    bool PostStage(const LivePostsModel::PostStage &o);
     bool Users(const LivePostsModel::User &o);
   }
 
