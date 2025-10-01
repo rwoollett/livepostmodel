@@ -63,7 +63,7 @@ namespace LivePostsEvents
     obj["slug"] = value.slug;
 
     jsonOut["payload"] = obj;
-    if (value.subject != Subject::PostCreate)
+    if (value.subject != Subject::PostStage)
     {
       throw std::string("PostStageEvent::to_json - Subject should be PostStage");
     }
