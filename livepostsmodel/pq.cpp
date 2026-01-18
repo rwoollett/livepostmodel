@@ -47,6 +47,7 @@ namespace LivePostsModel::PG
 
       post.id = std::atoi(getString("id").c_str());
       post.title = getString("title");
+      post.slug = getString("slug");
       post.content = getString("content");
       post.userId = std::atoi(getString("userId").c_str());
       post.userName = getString("userName");

@@ -10,7 +10,7 @@ namespace LivePostsModel
 
   bool Validate::PostStage(const LivePostsModel::PostStage &o)
   {
-    return !(o.postId < 0);
+    return !(o.title.empty() || o.postId < 0);
   }
 
   bool Validate::Users(const LivePostsModel::User &o)

@@ -18,6 +18,7 @@ namespace LivePostsModel
     int id;
     std::string title;
     std::string content;
+    std::string slug;
     int userId;
     std::string userName;
     std::string date;
@@ -36,6 +37,7 @@ namespace LivePostsModel
   struct PostStage
   {
     int postId;
+    std::string title;
     bool live{false};
 
     PostStage() = default;
