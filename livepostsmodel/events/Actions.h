@@ -12,12 +12,12 @@ namespace LivePostsEvents
   struct PostCreateEvent
   {
     Subject subject{Subject::PostCreate};
-    int id;
-    int userId;
+    int id = 0;
+    int userId = 0;
     std::string title;
     std::string userName;
-    bool live;
-    bool allocated;
+    bool live = false;
+    bool allocated = false;
     
     PostCreateEvent() = default;
   };
@@ -25,7 +25,7 @@ namespace LivePostsEvents
   struct PostStageEvent
   {
     Subject subject{Subject::PostStage};
-    int id;
+    int id = 0;
     std::string slug;
 
     PostStageEvent() = default;
