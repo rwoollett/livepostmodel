@@ -10,6 +10,7 @@
 
 using namespace Timestamp;
 
+#ifdef LIBPQ_FOUND
 namespace LivePostsModel::PG
 {
   std::unordered_map<std::string, int> mapFieldCols(PGresult *res, int nCols)
@@ -106,3 +107,4 @@ namespace LivePostsModel::PG
   }
 
 } // namespace Model::PG
+#endif // LIBPQ_FOUND
