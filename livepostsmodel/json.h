@@ -1,10 +1,12 @@
 #pragma once
 
 #include "LivePosts.h"
-#include "timestamp.h"
+#include "timestamp/timestamp.h"
 #include <string>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
+
+using namespace Timestamp;
 
 namespace LivePostsModel
 {
@@ -17,7 +19,7 @@ namespace LivePostsModel
     jsonOut["content"] = value.content;
     jsonOut["userId"] = value.userId;
     jsonOut["userName"] = value.userName;
-    jsonOut["date"] = LivePostsModel::formatDate(value.tpDate);
+    jsonOut["date"] = formatDate(value.tpDate);
 
     json reactions;
     reactions["thumbsUp"] = value.thumbsUp;
@@ -52,7 +54,7 @@ namespace LivePostsModel
     if (jsonIn.contains("date"))
     {
       jsonIn.at("date").get_to(value.date);
-      auto tpOptD = LivePostsModel::parseDate(value.date);
+      auto tpOptD = parseDate(value.date);
       if (tpOptD)
         value.tpDate = *tpOptD;
     }

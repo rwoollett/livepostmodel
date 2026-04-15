@@ -2,7 +2,6 @@
 
 #include "LivePosts.h"
 
-#ifdef LIBPQ_FOUND
 #include <libpq-fe.h>
 namespace LivePostsModel::PG
 {
@@ -16,4 +15,3 @@ namespace LivePostsModel::PG
   }
 
 } // namespace Model
-#endif //LIBPQ_FOUND

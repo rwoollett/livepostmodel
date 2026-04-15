@@ -1,27 +1,12 @@
 #pragma once
 
 #include "Actions.h"
-#include "../timestamp.h"
 #include <string>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
 namespace LivePostsEvents
 {
-
-
-  // inline void from_json(json const &jsonIn, GameCreateEvent &value)
-  // {
-  //   json obj = jsonIn.at("payload");
-  //   std::string subject;
-  //   jsonIn.at("subject").get_to(subject);
-  //   value.subject = SubjectFromNames.at(subject);
-  //   obj.at("gameId").get_to(value.gameId);
-  //   obj.at("board").get_to(value.board);
-  //   auto tpOptCA = LivePostsModel::parseDate(value.createdAt);
-  //   if (tpOptCA)
-  //     value.tpCreatedAt = *tpOptCA;
-  // };
 
   inline void to_json(json &jsonOut, PostCreateEvent const &value)
   {

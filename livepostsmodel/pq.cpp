@@ -1,6 +1,6 @@
 #include "pq.h"
 #include <unordered_map>
-#include "timestamp.h"
+#include "timestamp/timestamp.h"
 
 #ifdef NDEBUG
 #define D(x)
@@ -8,7 +8,8 @@
 #define D(x) x
 #endif
 
-#ifdef LIBPQ_FOUND
+using namespace Timestamp;
+
 namespace LivePostsModel::PG
 {
   std::unordered_map<std::string, int> mapFieldCols(PGresult *res, int nCols)
@@ -52,7 +53,7 @@ namespace LivePostsModel::PG
       post.userId = std::atoi(getString("userId").c_str());
       post.userName = getString("userName");
       post.date = getString("date");
-      auto tpOptD = LivePostsModel::parseDate(getString("date"));
+      auto tpOptD = parseDate(getString("date"));
       if (tpOptD)
         post.tpDate = *tpOptD;
       post.thumbsUp = std::atoi(getString("thumbsUp").c_str());
@@ -105,4 +106,3 @@ namespace LivePostsModel::PG
   }
 
 } // namespace Model::PG
-#endif // LIBPQ_FOUND
