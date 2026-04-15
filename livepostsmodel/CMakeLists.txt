@@ -11,8 +11,6 @@ add_library(LivePostsModel
   json.h
   pq.cpp
   pq.h
-  timestamp.cpp
-  timestamp.h
 )
 
 
