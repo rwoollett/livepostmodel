@@ -18,4 +18,9 @@ namespace LivePostsModel
     return !(o.name.empty() || o.authId.empty());
   }
 
+  bool Validate::Moderation(const LivePostsModel::Moderation &o)
+  {
+    return !(o.id.empty() || o.userId.empty()  || o.value.empty());
+  }
+
 }

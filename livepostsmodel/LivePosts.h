@@ -52,11 +52,21 @@ namespace LivePostsModel
     User() = default;
   };
 
+  struct Moderation
+  {
+    std::string id;     // id
+    std::string userId; // ws user id
+    std::string value;
+
+    Moderation() = default;
+  };
+
   namespace Validate
   {
     bool Posts(const LivePostsModel::Post &o);
     bool PostStage(const LivePostsModel::PostStage &o);
     bool Users(const LivePostsModel::User &o);
+    bool Moderation(const LivePostsModel::Moderation &o);
   }
 
 }
