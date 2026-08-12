@@ -31,7 +31,6 @@ namespace LivePostsModel
 
     jsonOut["live"] = value.live;
     jsonOut["allocated"] = value.allocated;
-
   }
 
   inline void from_json(json const &jsonIn, Post &value)
@@ -76,10 +75,8 @@ namespace LivePostsModel
     {
       jsonIn.at("allocated").get_to(value.allocated);
     }
-
   };
 
-  
   inline void to_json(json &jsonOut, PostStage const &value)
   {
     jsonOut["postId"] = value.postId;
@@ -94,7 +91,6 @@ namespace LivePostsModel
     jsonIn.at("live").get_to(value.live);
   };
 
-  
   inline void to_json(json &jsonOut, User const &value)
   {
     jsonOut["id"] = value.id;
@@ -110,6 +106,20 @@ namespace LivePostsModel
     }
     jsonIn.at("name").get_to(value.name);
     jsonIn.at("authId").get_to(value.authId);
+  };
+
+  inline void to_json(json &jsonOut, Moderation const &value)
+  {
+    jsonOut["id"] = value.id;
+    jsonOut["userId"] = value.userId;
+    jsonOut["value"] = value.value;
+  }
+
+  inline void from_json(json const &jsonIn, Moderation &value)
+  {
+    jsonIn.at("id").get_to(value.id);
+    jsonIn.at("userId").get_to(value.userId);
+    jsonIn.at("value").get_to(value.value);
   };
 
 } // namespace
