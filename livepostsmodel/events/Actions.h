@@ -13,12 +13,8 @@ namespace LivePostsEvents
   {
     Subject subject{Subject::PostCreate};
     int id = 0;
-    int userId = 0;
     std::string title;
-    std::string userName;
-    bool live = false;
-    bool allocated = false;
-    
+
     PostCreateEvent() = default;
   };
 
@@ -29,6 +25,27 @@ namespace LivePostsEvents
     std::string slug;
 
     PostStageEvent() = default;
+  };
+
+  struct ModerateJobEvent
+  {
+    Subject subject{Subject::ModerateJob};
+    std::string id;     // id 
+    std::string userId; // ws user id
+    std::string value;
+
+    ModerateJobEvent() = default;
+  };
+
+  struct ModerateResultEvent
+  {
+    Subject subject{Subject::ModerateResult};
+    std::string id;     // id 
+    std::string userId; // ws user id
+    bool reject = true;
+    double toxicity = 0.0;
+
+    ModerateResultEvent() = default;
   };
 
 }
