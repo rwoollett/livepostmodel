@@ -8,6 +8,7 @@
 #include <algorithm> //for_each
 #include <iostream>
 #include <chrono>
+#include <vector>
 
 namespace LivePostsModel
 {
