@@ -20,7 +20,12 @@ namespace LivePostsModel
 
   bool Validate::Moderation(const LivePostsModel::Moderation &o)
   {
-    return !(o.id.empty() || o.userId.empty()  || o.value.empty());
+    return !(o.id.empty() || o.userId.empty() || o.value.empty());
+  }
+
+  bool Validate::ModerationToken(const LivePostsModel::ModerationToken &o)
+  {
+    return !(o.attention_mask.empty() || o.input_ids.empty());
   }
 
 }

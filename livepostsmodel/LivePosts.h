@@ -61,12 +61,19 @@ namespace LivePostsModel
     Moderation() = default;
   };
 
+  struct ModerationToken
+  {
+    std::vector<int64_t> input_ids;
+    std::vector<int64_t> attention_mask;
+  };
+
   namespace Validate
   {
     bool Posts(const LivePostsModel::Post &o);
     bool PostStage(const LivePostsModel::PostStage &o);
     bool Users(const LivePostsModel::User &o);
     bool Moderation(const LivePostsModel::Moderation &o);
+    bool ModerationToken(const LivePostsModel::ModerationToken &o);
   }
 
 }

@@ -122,4 +122,60 @@ namespace LivePostsModel
     jsonIn.at("value").get_to(value.value);
   };
 
+  inline void to_json(json &j, ModerationToken const &t)
+  {
+    j = json{
+        {"input_ids", t.input_ids},
+        {"attention_mask", t.attention_mask}};
+  }
+
+  inline void from_json(json const &j, ModerationToken &t)
+  {
+    // Validate required fields
+    if (!j.contains("input_ids"))
+      throw std::runtime_error("ModerationToken missing required field: input_ids");
+
+    if (!j.contains("attention_mask"))
+      throw std::runtime_error("ModerationToken missing required field: attention_mask");
+
+    const auto &ids = j.at("input_ids");
+    const auto &mask = j.at("attention_mask");
+
+    if (!ids.is_array())
+      throw std::runtime_error("'input_ids' must be an array");
+
+    if (!mask.is_array())
+      throw std::runtime_error("'attention_mask' must be an array");
+
+    if (ids.empty())
+      throw std::runtime_error("'input_ids' cannot be empty");
+
+    if (mask.empty())
+      throw std::runtime_error("'attention_mask' cannot be empty");
+
+    if (ids.size() != mask.size())
+      throw std::runtime_error("'input_ids' and 'attention_mask' must be the same length");
+
+    t.input_ids.clear();
+    t.attention_mask.clear();
+
+    // Parse input_ids
+    for (const auto &item : ids)
+    {
+      if (!item.is_number_integer())
+        throw std::runtime_error("All items in 'input_ids' must be integers");
+
+      t.input_ids.push_back(item.get<int64_t>());
+    }
+
+    // Parse attention_mask
+    for (const auto &item : mask)
+    {
+      if (!item.is_number_integer())
+        throw std::runtime_error("All items in 'attention_mask' must be integers");
+
+      t.attention_mask.push_back(item.get<int64_t>());
+    }
+  }
+
 } // namespace
