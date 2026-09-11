@@ -90,8 +90,10 @@ namespace LivePostsEvents
     json obj;
     obj["id"] = value.id;
     obj["userId"] = value.userId;
-    obj["reject"] = value.reject;
-    obj["toxicity"] = value.toxicity;
+    obj["isRejected"] = value.isRejected;
+    obj["score"] = value.score;
+    obj["classIndex"] = value.classIndex;
+    obj["probabilities"] = value.probabilities;
 
     jsonOut["payload"] = obj;
     if (value.subject != Subject::ModerateResult)
@@ -110,8 +112,31 @@ namespace LivePostsEvents
 
     obj.at("id").get_to(value.id);
     obj.at("userId").get_to(value.userId);
-    obj.at("reject").get_to(value.reject);
-    obj.at("toxicity").get_to(value.toxicity);
+    obj.at("isRejected").get_to(value.isRejected);
+    obj.at("score").get_to(value.score);
+    obj.at("classIndex").get_to(value.classIndex);
+
+    if (!jsonIn.contains("probabilities"))
+      throw std::runtime_error("ModerateResultEvent missing required field: probabilities");
+
+    const auto &ids = jsonIn.at("probabilities");
+
+    if (!ids.is_array())
+      throw std::runtime_error("'probabilities' must be an array");
+
+    if (ids.empty())
+      throw std::runtime_error("'probabilities' cannot be empty");
+
+    value.probabilities.clear();
+
+    // Parse logits
+    for (const auto &item : ids)
+    {
+      if (!item.is_number_float())
+        throw std::runtime_error("All items in 'probabilities' must be floats");
+
+      value.probabilities.push_back(item.get<float>());
+    }
   };
 
 } // namespace Events

@@ -5,6 +5,7 @@
 #include "Subjects.h"
 #include <string>
 #include <chrono>
+#include <vector>
 
 namespace LivePostsEvents
 {
@@ -30,7 +31,7 @@ namespace LivePostsEvents
   struct ModerateJobEvent
   {
     Subject subject{Subject::ModerateJob};
-    std::string id;     // id 
+    std::string id;     // id
     std::string userId; // ws user id
     std::string value;
 
@@ -40,13 +41,27 @@ namespace LivePostsEvents
   struct ModerateResultEvent
   {
     Subject subject{Subject::ModerateResult};
-    std::string id;     // id 
+    std::string id;     // id
     std::string userId; // ws user id
-    bool reject = true;
-    double toxicity = 0.0;
+    // bool reject = true;
+    // double toxicity = 0.0;
+    bool isRejected = true;
+    float score = 0.0;
+    int classIndex = 0;
+    std::vector<float> probabilities;
 
     ModerateResultEvent() = default;
   };
+
+  // struct ModerateResultEvent
+  // {
+  //   std::string subject = "moderate_result";
+  //   std::string userId;
+  //   bool isRejected;
+  //   float score;
+  //   int classIndex;
+  //   std::vector<float> probabilities;
+  // };
 
 }
 #endif // EVENT_LIVEPOST_ACTIONS_H
