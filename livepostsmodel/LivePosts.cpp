@@ -28,4 +28,9 @@ namespace LivePostsModel
     return !(o.attention_mask.empty() || o.input_ids.empty());
   }
 
+  bool Validate::ModerationLogits(const LivePostsModel::ModerationLogits &o)
+  {
+    return !(o.logits.empty());
+  }
+
 }

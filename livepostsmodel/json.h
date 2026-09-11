@@ -178,4 +178,36 @@ namespace LivePostsModel
     }
   }
 
+  inline void to_json(json &j, ModerationLogits const &t)
+  {
+    j = json{
+        {"logits" t.logits}};
+  }
+
+  inline void from_json(json const &j, ModerationLogits &t)
+  {
+    // Validate required fields
+    if (!j.contains("logits"))
+      throw std::runtime_error("ModerationLogits missing required field: logits");
+
+    const auto &ids = j.at("logits");
+
+    if (!ids.is_array())
+      throw std::runtime_error("'logits' must be an array");
+
+    if (ids.empty())
+      throw std::runtime_error("'logits' cannot be empty");
+
+    t.logits.clear();
+
+    // Parse logits
+    for (const auto &item : ids)
+    {
+      if (!item.is_number_float())
+        throw std::runtime_error("All items in 'logits' must be floats");
+
+      t.input_ids.push_back(item.get<float>());
+    }
+  }
+
 } // namespace

@@ -68,6 +68,11 @@ namespace LivePostsModel
     std::vector<int64_t> attention_mask;
   };
 
+  struct ModerationLogits
+  {
+    std::vector<float> logits;
+  };
+
   namespace Validate
   {
     bool Posts(const LivePostsModel::Post &o);
@@ -75,6 +80,7 @@ namespace LivePostsModel
     bool Users(const LivePostsModel::User &o);
     bool Moderation(const LivePostsModel::Moderation &o);
     bool ModerationToken(const LivePostsModel::ModerationToken &o);
+    bool ModerationLogits(const LivePostsModel::ModerationLogits &o);
   }
 
 }
