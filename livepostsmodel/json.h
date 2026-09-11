@@ -181,7 +181,7 @@ namespace LivePostsModel
   inline void to_json(json &j, ModerationLogits const &t)
   {
     j = json{
-        {"logits" t.logits}};
+        {"logits", t.logits}};
   }
 
   inline void from_json(json const &j, ModerationLogits &t)
@@ -206,7 +206,7 @@ namespace LivePostsModel
       if (!item.is_number_float())
         throw std::runtime_error("All items in 'logits' must be floats");
 
-      t.input_ids.push_back(item.get<float>());
+      t.logits.push_back(item.get<float>());
     }
   }
 
