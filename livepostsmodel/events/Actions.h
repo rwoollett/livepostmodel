@@ -48,6 +48,7 @@ namespace LivePostsEvents
     bool isRejected = true;
     float score = 0.0;
     int classIndex = 0;
+    std::string label;
     std::vector<float> probabilities;
 
     ModerateResultEvent() = default;

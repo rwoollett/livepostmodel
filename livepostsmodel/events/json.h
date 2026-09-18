@@ -93,6 +93,7 @@ namespace LivePostsEvents
     obj["isRejected"] = value.isRejected;
     obj["score"] = value.score;
     obj["classIndex"] = value.classIndex;
+    obj["label"] = value.label;
     obj["probabilities"] = value.probabilities;
 
     jsonOut["payload"] = obj;
@@ -115,6 +116,7 @@ namespace LivePostsEvents
     obj.at("isRejected").get_to(value.isRejected);
     obj.at("score").get_to(value.score);
     obj.at("classIndex").get_to(value.classIndex);
+    obj.at("label").get_to(value.label);
 
     if (!jsonIn.contains("probabilities"))
       throw std::runtime_error("ModerateResultEvent missing required field: probabilities");
