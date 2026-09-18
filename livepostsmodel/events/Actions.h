@@ -43,26 +43,15 @@ namespace LivePostsEvents
     Subject subject{Subject::ModerateResult};
     std::string id;     // id
     std::string userId; // ws user id
-    // bool reject = true;
-    // double toxicity = 0.0;
     bool isRejected = true;
     float score = 0.0;
     int classIndex = 0;
     std::string label;
     std::vector<float> probabilities;
+    std::vector<std::string> matchedLabels;
 
     ModerateResultEvent() = default;
   };
-
-  // struct ModerateResultEvent
-  // {
-  //   std::string subject = "moderate_result";
-  //   std::string userId;
-  //   bool isRejected;
-  //   float score;
-  //   int classIndex;
-  //   std::vector<float> probabilities;
-  // };
 
 }
 #endif // EVENT_LIVEPOST_ACTIONS_H

@@ -95,6 +95,7 @@ namespace LivePostsEvents
     obj["classIndex"] = value.classIndex;
     obj["label"] = value.label;
     obj["probabilities"] = value.probabilities;
+    obj["matchedLabels"] = value.matchedLabels;
 
     jsonOut["payload"] = obj;
     if (value.subject != Subject::ModerateResult)
@@ -117,11 +118,12 @@ namespace LivePostsEvents
     obj.at("score").get_to(value.score);
     obj.at("classIndex").get_to(value.classIndex);
     obj.at("label").get_to(value.label);
+    obj.at("matchedLabels").get_to(value.matchedLabels);
 
-    if (!jsonIn.contains("probabilities"))
+    if (!obj.contains("probabilities"))
       throw std::runtime_error("ModerateResultEvent missing required field: probabilities");
 
-    const auto &ids = jsonIn.at("probabilities");
+    const auto &ids = obj.at("probabilities");
 
     if (!ids.is_array())
       throw std::runtime_error("'probabilities' must be an array");
