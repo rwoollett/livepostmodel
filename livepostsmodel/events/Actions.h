@@ -34,6 +34,7 @@ namespace LivePostsEvents
     std::string id;     // id
     std::string userId; // ws user id
     std::string value;
+    uint64_t seq{0};
 
     ModerateJobEvent() = default;
   };
@@ -43,6 +44,7 @@ namespace LivePostsEvents
     Subject subject{Subject::ModerateResult};
     std::string id;     // id
     std::string userId; // ws user id
+    uint64_t seq{0};
     bool isRejected = true;
     float score = 0.0;
     int classIndex = 0;

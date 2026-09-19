@@ -63,6 +63,7 @@ namespace LivePostsEvents
     json obj;
     obj["id"] = value.id;
     obj["userId"] = value.userId;
+    obj["seq"] = value.seq;
     obj["value"] = value.value;
 
     jsonOut["payload"] = obj;
@@ -82,6 +83,7 @@ namespace LivePostsEvents
 
     obj.at("id").get_to(value.id);
     obj.at("userId").get_to(value.userId);
+    obj.at("seq").get_to(value.seq);
     obj.at("value").get_to(value.value);
   };
 
@@ -90,6 +92,7 @@ namespace LivePostsEvents
     json obj;
     obj["id"] = value.id;
     obj["userId"] = value.userId;
+    obj["seq"] = value.seq;
     obj["isRejected"] = value.isRejected;
     obj["score"] = value.score;
     obj["classIndex"] = value.classIndex;
@@ -114,6 +117,7 @@ namespace LivePostsEvents
 
     obj.at("id").get_to(value.id);
     obj.at("userId").get_to(value.userId);
+    obj.at("seq").get_to(value.seq);
     obj.at("isRejected").get_to(value.isRejected);
     obj.at("score").get_to(value.score);
     obj.at("classIndex").get_to(value.classIndex);
