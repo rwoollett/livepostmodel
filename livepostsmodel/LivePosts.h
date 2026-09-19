@@ -57,6 +57,7 @@ namespace LivePostsModel
   {
     std::string id;     // id
     std::string userId; // ws user id
+    uint64_t seq{0};
     std::string value;
 
     Moderation() = default;

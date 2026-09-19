@@ -112,6 +112,7 @@ namespace LivePostsModel
   {
     jsonOut["id"] = value.id;
     jsonOut["userId"] = value.userId;
+    jsonOut["seq"] = value.seq;
     jsonOut["value"] = value.value;
   }
 
@@ -119,6 +120,7 @@ namespace LivePostsModel
   {
     jsonIn.at("id").get_to(value.id);
     jsonIn.at("userId").get_to(value.userId);
+    jsonIn.at("seq").get_to(value.seq);
     jsonIn.at("value").get_to(value.value);
   };
 
