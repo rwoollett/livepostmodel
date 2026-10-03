@@ -38,6 +38,8 @@ namespace LivePostsEvents
     json obj;
     obj["id"] = value.id;
     obj["slug"] = value.slug;
+    obj["userId"] = value.userId;
+    obj["draftId"] = value.draftId;
 
     jsonOut["payload"] = obj;
     if (value.subject != Subject::PostStage)
@@ -56,6 +58,8 @@ namespace LivePostsEvents
 
     obj.at("id").get_to(value.id);
     obj.at("slug").get_to(value.slug);
+    obj.at("userId").get_to(value.userId);
+    obj.at("draftId").get_to(value.draftId);
   };
 
   inline void to_json(json &jsonOut, ModerateJobEvent const &value)

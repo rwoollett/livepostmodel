@@ -24,6 +24,8 @@ namespace LivePostsEvents
     Subject subject{Subject::PostStage};
     int id = 0;
     std::string slug;
+    std::string userId; // ws user id
+    std::string draftId; // draft post id
 
     PostStageEvent() = default;
   };
