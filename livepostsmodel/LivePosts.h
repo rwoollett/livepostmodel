@@ -13,6 +13,13 @@
 namespace LivePostsModel
 {
 
+  enum class PostStatus
+  {
+    Draft,
+    PendingModeration,
+    Live,
+    Rejected
+  };
   // Define a struct to encapsulate Post table insert, update and query
   struct Post
   {
@@ -29,7 +36,7 @@ namespace LivePostsModel
     int heart = 0;
     int rocket = 0;
     int eyes = 0;
-    bool live = false;
+    PostStatus status{PostStatus::Draft};
     bool allocated = false;
 
     Post() = default;

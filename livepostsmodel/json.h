@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LivePosts.h"
+#include "PostStatus.h"
 #include "timestamp/timestamp.h"
 #include <string>
 #include <nlohmann/json.hpp>
@@ -10,6 +11,16 @@ using namespace Timestamp;
 
 namespace LivePostsModel
 {
+  inline void to_json(json &j, const PostStatus &status)
+  {
+    j = to_string(status);
+  }
+
+  inline void from_json(const json &j, PostStatus &status)
+  {
+    status = postStatusFromString(
+        j.get<std::string>());
+  }
 
   inline void to_json(json &jsonOut, Post const &value)
   {
@@ -29,7 +40,7 @@ namespace LivePostsModel
     reactions["eyes"] = value.eyes;
     jsonOut["reactions"] = reactions;
 
-    jsonOut["live"] = value.live;
+    jsonOut["status"] = value.status;
     jsonOut["allocated"] = value.allocated;
   }
 
@@ -67,9 +78,9 @@ namespace LivePostsModel
       reactions.at("eyes").get_to(value.eyes);
     }
 
-    if (jsonIn.contains("live"))
+    if (jsonIn.contains("status"))
     {
-      jsonIn.at("live").get_to(value.live);
+      jsonIn.at("status").get_to(value.status);
     }
     if (jsonIn.contains("allocated"))
     {

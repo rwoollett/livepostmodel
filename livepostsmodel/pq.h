@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LivePosts.h"
+#include "PostStatus.h"
 
 #ifdef LIBPQ_FOUND
 #include <libpq-fe.h>
