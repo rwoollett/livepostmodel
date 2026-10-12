@@ -62,9 +62,9 @@ namespace LivePostsModel::PG
       post.heart = std::atoi(getString("heart").c_str());
       post.rocket = std::atoi(getString("rocket").c_str());
       post.eyes = std::atoi(getString("eyes").c_str());
-      post.live = (getString("live") == "t");
+      post.status = postStatusFromString(
+          PQgetvalue(res, row, statusCol)); //(getString("live") == "t");
       post.allocated = (getString("allocated") == "t");
-
     }
     catch (const std::string &e)
     {
@@ -78,7 +78,6 @@ namespace LivePostsModel::PG
     return post;
   }
 
-  
   LivePostsModel::User Users::fromPGRes(PGresult *res, int nCols, int rowIndex)
   {
     LivePostsModel::User user{};
