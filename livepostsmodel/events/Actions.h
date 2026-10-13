@@ -19,13 +19,20 @@ namespace LivePostsEvents
     PostCreateEvent() = default;
   };
 
+  struct PostPublishedEvent
+  {
+    Subject subject{Subject::PostPublished};
+    int id = 0;
+    std::string slug;
+
+    PostPublishedEvent() = default;
+  };
+
   struct PostStageEvent
   {
     Subject subject{Subject::PostStage};
     int id = 0;
     std::string slug;
-    std::string userId; // ws user id
-    std::string draftId; // draft post id
 
     PostStageEvent() = default;
   };
