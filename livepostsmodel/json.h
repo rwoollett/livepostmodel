@@ -90,16 +90,18 @@ namespace LivePostsModel
 
   inline void to_json(json &jsonOut, PostCreate const &value)
   {
-    jsonOut["postId"] = value.postId;
     jsonOut["title"] = value.title;
-    jsonOut["live"] = value.live;
+    jsonOut["content"] = value.content;
+    jsonOut["wsId"] = value.wsId;
+    jsonOut["authorUserId"] = value.authorUserId;
   }
 
   inline void from_json(json const &jsonIn, PostCreate &value)
   {
-    jsonIn.at("postId").get_to(value.postId);
     jsonIn.at("title").get_to(value.title);
-    jsonIn.at("live").get_to(value.live);
+    jsonIn.at("content").get_to(value.content);
+    jsonIn.at("wsId").get_to(value.wsId);
+    jsonIn.at("authorUserId").get_to(value.authorUserId);
   };
 
   inline void to_json(json &jsonOut, PostStage const &value)
