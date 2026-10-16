@@ -15,6 +15,7 @@ namespace LivePostsEvents
     Subject subject{Subject::PostCreate};
     int id = 0;
     std::string title;
+    std::string wsId; 
 
     PostCreateEvent() = default;
   };

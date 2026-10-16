@@ -13,6 +13,7 @@ namespace LivePostsEvents
     json obj;
     obj["id"] = value.id;
     obj["title"] = value.title;
+    obj["wsId"] = value.wsId;
 
     jsonOut["payload"] = obj;
     if (value.subject != Subject::PostCreate)
@@ -31,6 +32,7 @@ namespace LivePostsEvents
 
     obj.at("id").get_to(value.id);
     obj.at("title").get_to(value.title);
+    obj.at("wsId").get_to(value.wsId);
   };
 
   inline void to_json(json &jsonOut, PostStageEvent const &value)
