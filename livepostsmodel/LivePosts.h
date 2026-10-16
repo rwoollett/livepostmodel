@@ -20,6 +20,7 @@ namespace LivePostsModel
     Live,
     Rejected
   };
+
   // Define a struct to encapsulate Post table insert, update and query
   struct Post
   {
@@ -40,6 +41,16 @@ namespace LivePostsModel
     bool allocated = false;
 
     Post() = default;
+  };
+
+  struct PostCreate
+  {
+    std::string title;
+    std::string content;
+    int authorUserId = 0;
+    std::string wsId; 
+
+    PostCreate() = default;
   };
 
   struct PostStage
@@ -84,6 +95,7 @@ namespace LivePostsModel
   namespace Validate
   {
     bool Posts(const LivePostsModel::Post &o);
+    bool PostCreate(const LivePostsModel::PostCreate &o);
     bool PostStage(const LivePostsModel::PostStage &o);
     bool Users(const LivePostsModel::User &o);
     bool Moderation(const LivePostsModel::Moderation &o);

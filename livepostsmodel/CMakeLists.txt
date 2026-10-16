@@ -14,9 +14,17 @@ add_library(LivePostsModel
   pq.h
 )
 
-
 target_include_directories(
   LivePostsModel PUBLIC 
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>/..
   $<INSTALL_INTERFACE:include>
+  PRIVATE $<BUILD_INTERFACE:${LIBPQ_INCLUDE_DIRS}>
 )
+
+target_link_libraries(
+  LivePostsModel 
+  PRIVATE Timestamp
+  ${LIBPQ_LIBRARIES}
+)
+
+

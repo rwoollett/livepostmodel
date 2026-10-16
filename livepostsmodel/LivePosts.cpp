@@ -8,6 +8,11 @@ namespace LivePostsModel
     return !(o.title.empty() || o.content.empty() || o.userId < 0);
   }
 
+  bool Validate::PostCreate(const LivePostsModel::PostCreate &o)
+  {
+    return !(o.title.empty() || o.content.empty() || o.authorUserId < 0 || o.wsId.empty());
+  }
+
   bool Validate::PostStage(const LivePostsModel::PostStage &o)
   {
     return !(o.title.empty() || o.postId < 0);
