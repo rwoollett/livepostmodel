@@ -123,6 +123,7 @@ namespace LivePostsEvents
     json obj;
     obj["id"] = value.id;
     obj["wsId"] = value.wsId;
+    obj["purpose"] = value.purpose;
     obj["seq"] = value.seq;
     obj["isRejected"] = value.isRejected;
     obj["score"] = value.score;
@@ -148,6 +149,7 @@ namespace LivePostsEvents
 
     obj.at("id").get_to(value.id);
     obj.at("wsId").get_to(value.wsId);
+    obj.at("purpose").get_to(value.purpose);
     obj.at("seq").get_to(value.seq);
     obj.at("isRejected").get_to(value.isRejected);
     obj.at("score").get_to(value.score);

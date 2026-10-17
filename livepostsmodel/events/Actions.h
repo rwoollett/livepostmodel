@@ -56,6 +56,7 @@ namespace LivePostsEvents
     Subject subject{Subject::ModerateResult};
     std::string id;
     std::string wsId;
+    std::string purpose; // = "live" | "publish"
     uint64_t seq{0};
     bool isRejected = true;
     float score = 0.0;
