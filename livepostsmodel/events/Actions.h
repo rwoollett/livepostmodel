@@ -23,8 +23,10 @@ namespace LivePostsEvents
   struct PostPublishedEvent
   {
     Subject subject{Subject::PostPublished};
-    int id = 0;
+    int postId = 0;
+    int authorUserId = 0;
     std::string slug;
+    std::string wsId; 
 
     PostPublishedEvent() = default;
   };

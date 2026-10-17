@@ -35,6 +35,35 @@ namespace LivePostsEvents
     obj.at("wsId").get_to(value.wsId);
   };
 
+  inline void to_json(json &jsonOut, PostPublishedEvent const &value)
+  {
+    json obj;
+    obj["postId"] = value.postId;
+    obj["authorUserId"] = value.authorUserId;
+    obj["slug"] = value.slug;
+    obj["wsId"] = value.wsId;
+
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::PostPublished)
+    {
+      throw std::string("PostPublished::to_json - Subject should be PostPublished");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, PostPublishedEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+
+    obj.at("postId").get_to(value.postId);
+    obj.at("authorUserId").get_to(value.authorUserId);
+    obj.at("slug").get_to(value.slug);
+    obj.at("wsId").get_to(value.wsId);
+  };
+
   inline void to_json(json &jsonOut, PostStageEvent const &value)
   {
     json obj;
