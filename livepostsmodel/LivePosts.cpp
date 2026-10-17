@@ -25,7 +25,7 @@ namespace LivePostsModel
 
   bool Validate::Moderation(const LivePostsModel::Moderation &o)
   {
-    return !(o.id.empty() || o.userId.empty() || o.value.empty()  || o.seq < 0);
+    return !(o.id.empty() || o.wsId.empty() || o.value.empty()  || o.seq < 0);
   }
 
   bool Validate::ModerationToken(const LivePostsModel::ModerationToken &o)

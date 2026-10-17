@@ -48,7 +48,7 @@ namespace LivePostsModel
     std::string title;
     std::string content;
     int authorUserId = 0;
-    std::string wsId; 
+    std::string wsId;
 
     PostCreate() = default;
   };
@@ -73,8 +73,8 @@ namespace LivePostsModel
 
   struct Moderation
   {
-    std::string id;     // id
-    std::string userId; // ws user id
+    std::string id;
+    std::string wsId;
     uint64_t seq{0};
     std::string value;
 

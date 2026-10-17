@@ -15,7 +15,7 @@ namespace LivePostsEvents
     Subject subject{Subject::PostCreate};
     int id = 0;
     std::string title;
-    std::string wsId; 
+    std::string wsId;
 
     PostCreateEvent() = default;
   };
@@ -26,7 +26,7 @@ namespace LivePostsEvents
     int postId = 0;
     int authorUserId = 0;
     std::string slug;
-    std::string wsId; 
+    std::string wsId;
 
     PostPublishedEvent() = default;
   };
@@ -43,8 +43,8 @@ namespace LivePostsEvents
   struct ModerateJobEvent
   {
     Subject subject{Subject::ModerateJob};
-    std::string id;     // id
-    std::string userId; // ws user id
+    std::string id;
+    std::string wsId;
     std::string value;
     uint64_t seq{0};
 
@@ -54,8 +54,8 @@ namespace LivePostsEvents
   struct ModerateResultEvent
   {
     Subject subject{Subject::ModerateResult};
-    std::string id;     // id
-    std::string userId; // ws user id
+    std::string id;
+    std::string wsId;
     uint64_t seq{0};
     bool isRejected = true;
     float score = 0.0;
