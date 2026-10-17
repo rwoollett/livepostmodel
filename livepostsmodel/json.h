@@ -138,7 +138,7 @@ namespace LivePostsModel
   inline void to_json(json &jsonOut, Moderation const &value)
   {
     jsonOut["id"] = value.id;
-    jsonOut["userId"] = value.userId;
+    jsonOut["wsId"] = value.wsId;
     jsonOut["seq"] = value.seq;
     jsonOut["value"] = value.value;
   }
@@ -146,7 +146,7 @@ namespace LivePostsModel
   inline void from_json(json const &jsonIn, Moderation &value)
   {
     jsonIn.at("id").get_to(value.id);
-    jsonIn.at("userId").get_to(value.userId);
+    jsonIn.at("wsId").get_to(value.wsId);
     jsonIn.at("seq").get_to(value.seq);
     jsonIn.at("value").get_to(value.value);
   };
