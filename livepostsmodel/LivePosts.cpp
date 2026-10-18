@@ -18,6 +18,11 @@ namespace LivePostsModel
     return !(o.title.empty() || o.wsId.empty());
   }
 
+  bool Validate::PostReject(const LivePostsModel::PostReject &o)
+  {
+    return !(o.wsId.empty());
+  }
+
   bool Validate::Users(const LivePostsModel::User &o)
   {
     return !(o.name.empty() || o.authId.empty());
@@ -25,7 +30,7 @@ namespace LivePostsModel
 
   bool Validate::Moderation(const LivePostsModel::Moderation &o)
   {
-    return !(o.id.empty() || o.wsId.empty() || o.value.empty()  || o.seq < 0);
+    return !(o.id.empty() || o.wsId.empty() || o.value.empty() || o.seq < 0);
   }
 
   bool Validate::ModerationToken(const LivePostsModel::ModerationToken &o)

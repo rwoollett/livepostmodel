@@ -116,6 +116,16 @@ namespace LivePostsModel
     jsonIn.at("wsId").get_to(value.wsId);
   };
 
+  inline void to_json(json &jsonOut, PostReject const &value)
+  {
+    jsonOut["wsId"] = value.wsId;
+  }
+
+  inline void from_json(json const &jsonIn, PostReject &value)
+  {
+    jsonIn.at("wsId").get_to(value.wsId);
+  };
+
   inline void to_json(json &jsonOut, User const &value)
   {
     jsonOut["id"] = value.id;
