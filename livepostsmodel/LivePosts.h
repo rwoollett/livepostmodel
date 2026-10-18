@@ -55,9 +55,8 @@ namespace LivePostsModel
 
   struct PostStage
   {
-    int postId = 0;
     std::string title;
-    bool live = false;
+    std::string wsId;
 
     PostStage() = default;
   };
