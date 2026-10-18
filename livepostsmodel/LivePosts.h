@@ -61,13 +61,6 @@ namespace LivePostsModel
     PostStage() = default;
   };
 
-  struct PostReject
-  {
-    std::string wsId;
-
-    PostReject() = default;
-  };
-
   struct User
   {
     int id = 0;
@@ -103,7 +96,6 @@ namespace LivePostsModel
     bool Posts(const LivePostsModel::Post &o);
     bool PostCreate(const LivePostsModel::PostCreate &o);
     bool PostStage(const LivePostsModel::PostStage &o);
-    bool PostReject(const LivePostsModel::PostReject &o);
     bool Users(const LivePostsModel::User &o);
     bool Moderation(const LivePostsModel::Moderation &o);
     bool ModerationToken(const LivePostsModel::ModerationToken &o);
