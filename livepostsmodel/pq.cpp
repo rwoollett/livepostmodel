@@ -67,11 +67,13 @@ namespace LivePostsModel::PG
       post.content = getString("content");
       post.slug = getString("slug");
 
-      post.draftTitle =
-          getStringOrDefault(res, rowIndex, fieldColumns, "draftTitle");
+      post.title = getString("draftTitle");
+      post.content = getString("draftContent");
+      // post.draftTitle =
+      //     getStringOrDefault(res, rowIndex, fieldColumns, "draftTitle");
 
-      post.draftContent =
-          getStringOrDefault(res, rowIndex, fieldColumns, "draftContent");
+      // post.draftContent =
+      //     getStringOrDefault(res, rowIndex, fieldColumns, "draftContent");
 
       post.userId = std::atoi(getString("userId").c_str());
       post.userName = getString("userName");
