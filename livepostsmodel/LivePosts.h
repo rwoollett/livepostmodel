@@ -53,6 +53,15 @@ namespace LivePostsModel
     PostCreate() = default;
   };
 
+  struct PostUpdate
+  {
+    std::string title;
+    std::string content;
+    std::string wsId;
+
+    PostUpdate() = default;
+  };
+
   struct PostStage
   {
     std::string title;
@@ -95,6 +104,7 @@ namespace LivePostsModel
   {
     bool Posts(const LivePostsModel::Post &o);
     bool PostCreate(const LivePostsModel::PostCreate &o);
+    bool PostUpdate(const LivePostsModel::PostUpdate &o);
     bool PostStage(const LivePostsModel::PostStage &o);
     bool Users(const LivePostsModel::User &o);
     bool Moderation(const LivePostsModel::Moderation &o);

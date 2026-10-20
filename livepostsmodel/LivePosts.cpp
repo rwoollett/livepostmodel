@@ -13,6 +13,11 @@ namespace LivePostsModel
     return !(o.title.empty() || o.content.empty() || o.authorUserId < 0 || o.wsId.empty());
   }
 
+  bool Validate::PostUpdate(const LivePostsModel::PostUpdate &o)
+  {
+    return !(o.title.empty() || o.content.empty() || o.wsId.empty());
+  }
+
   bool Validate::PostStage(const LivePostsModel::PostStage &o)
   {
     return !(o.title.empty() || o.wsId.empty());
