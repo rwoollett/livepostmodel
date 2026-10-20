@@ -32,8 +32,23 @@ namespace LivePostsModel::PG
   {
     auto it = fieldColumns.find(key);
     if (it == fieldColumns.end())
-      throw std::string("Field not matched for " + key);
+      throw std::runtime_error("Field not matched for " + key);
     return std::string(PQgetvalue(res, rowIndex, fieldColumns.at(key)));
+  };
+
+  auto const getStringOrDefault = [](
+                                      PGresult *res,
+                                      int rowIndex,
+                                      const std::unordered_map<std::string, int> &fieldColumns,
+                                      const std::string &key,
+                                      std::string defaultValue = "")
+  {
+    auto it = fieldColumns.find(key);
+
+    if (it == fieldColumns.end())
+      return defaultValue;
+
+    return std::string(PQgetvalue(res, rowIndex, it->second));
   };
 
   LivePostsModel::Post Posts::fromPGRes(PGresult *res, int nCols, int rowIndex)
@@ -51,8 +66,13 @@ namespace LivePostsModel::PG
       post.title = getString("title");
       post.content = getString("content");
       post.slug = getString("slug");
-      post.draftTitle = getString("draftTitle");
-      post.draftContent = getString("draftContent");
+
+      post.draftTitle =
+          getStringOrDefault(res, rowIndex, fieldColumns, "draftTitle");
+
+      post.draftContent =
+          getStringOrDefault(res, rowIndex, fieldColumns, "draftContent");
+
       post.userId = std::atoi(getString("userId").c_str());
       post.userName = getString("userName");
       post.date = getString("date");
@@ -64,7 +84,7 @@ namespace LivePostsModel::PG
       post.heart = std::atoi(getString("heart").c_str());
       post.rocket = std::atoi(getString("rocket").c_str());
       post.eyes = std::atoi(getString("eyes").c_str());
-      post.status = postStatusFromString(getString("status")); 
+      post.status = postStatusFromString(getString("status"));
       post.allocated = (getString("allocated") == "t");
     }
     catch (const std::string &e)
