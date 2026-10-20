@@ -12,7 +12,6 @@ namespace LivePostsEvents
   {
     json obj;
     obj["id"] = value.id;
-    obj["title"] = value.title;
     obj["wsId"] = value.wsId;
 
     jsonOut["payload"] = obj;
@@ -31,7 +30,31 @@ namespace LivePostsEvents
     value.subject = SubjectFromNames.at(subject);
 
     obj.at("id").get_to(value.id);
-    obj.at("title").get_to(value.title);
+    obj.at("wsId").get_to(value.wsId);
+  };
+
+  inline void to_json(json &jsonOut, PostUpdateEvent const &value)
+  {
+    json obj;
+    obj["id"] = value.id;
+    obj["wsId"] = value.wsId;
+
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::PostCreate)
+    {
+      throw std::string("PostUpdateEvent::to_json - Subject should be PostUpdate");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, PostUpdateEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+
+    obj.at("id").get_to(value.id);
     obj.at("wsId").get_to(value.wsId);
   };
 

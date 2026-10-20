@@ -14,10 +14,18 @@ namespace LivePostsEvents
   {
     Subject subject{Subject::PostCreate};
     int id = 0;
-    std::string title;
     std::string wsId;
 
     PostCreateEvent() = default;
+  };
+
+  struct PostUpdateEvent
+  {
+    Subject subject{Subject::PostUpdate};
+    int id = 0;
+    std::string wsId;
+
+    PostUpdateEvent() = default;
   };
 
   struct PostPublishedEvent
