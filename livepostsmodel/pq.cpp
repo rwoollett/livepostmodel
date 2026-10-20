@@ -49,8 +49,10 @@ namespace LivePostsModel::PG
 
       post.id = std::atoi(getString("id").c_str());
       post.title = getString("title");
-      post.slug = getString("slug");
       post.content = getString("content");
+      post.slug = getString("slug");
+      post.draftTitle = getString("draftTitle");
+      post.draftContent = getString("draftContent");
       post.userId = std::atoi(getString("userId").c_str());
       post.userName = getString("userName");
       post.date = getString("date");
@@ -62,7 +64,7 @@ namespace LivePostsModel::PG
       post.heart = std::atoi(getString("heart").c_str());
       post.rocket = std::atoi(getString("rocket").c_str());
       post.eyes = std::atoi(getString("eyes").c_str());
-      post.status = postStatusFromString(getString("status")); //(getString("live") == "t");
+      post.status = postStatusFromString(getString("status")); 
       post.allocated = (getString("allocated") == "t");
     }
     catch (const std::string &e)

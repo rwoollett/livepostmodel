@@ -26,8 +26,11 @@ namespace LivePostsModel
   {
     jsonOut["id"] = value.id;
     jsonOut["title"] = value.title;
-    jsonOut["slug"] = value.slug;
     jsonOut["content"] = value.content;
+    jsonOut["slug"] = value.slug;
+    
+    jsonOut["draftTitle"] = value.draftTitle;
+    jsonOut["draftContent"] = value.draftContent;
     jsonOut["userId"] = value.userId;
     jsonOut["userName"] = value.userName;
     jsonOut["date"] = formatDate(value.tpDate);
@@ -51,11 +54,22 @@ namespace LivePostsModel
       jsonIn.at("id").get_to(value.id);
     }
     jsonIn.at("title").get_to(value.title);
+    jsonIn.at("content").get_to(value.content);
+
     if (jsonIn.contains("slug"))
     {
       jsonIn.at("slug").get_to(value.slug);
     }
-    jsonIn.at("content").get_to(value.content);
+
+    if (jsonIn.contains("draftTitle"))
+    {
+      jsonIn.at("draftTitle").get_to(value.draftTitle);
+    }
+    if (jsonIn.contains("draftContent"))
+    {
+      jsonIn.at("draftContent").get_to(value.draftContent);
+    }
+
     jsonIn.at("userId").get_to(value.userId);
     if (jsonIn.contains("userName"))
     {

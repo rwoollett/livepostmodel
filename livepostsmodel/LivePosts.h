@@ -27,6 +27,8 @@ namespace LivePostsModel
     int id = 0;
     std::string title;
     std::string content;
+    std::string draftTitle;
+    std::string draftContent;
     std::string slug;
     int userId = 0;
     std::string userName;
