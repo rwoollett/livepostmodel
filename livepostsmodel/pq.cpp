@@ -113,13 +113,10 @@ namespace LivePostsModel::PG
       user.authId = getString("authId");
       user.name = getString("name");
     }
-    catch (const std::string &e)
+    catch (const std::exception &e)
     {
-      throw e;
-    }
-    catch (...)
-    {
-      throw "error in fromPQRes";
+      throw std::runtime_error(
+          std::string("LivePostsModel::PG::fromPGRes: ") + e.what());
     }
 
     return user;

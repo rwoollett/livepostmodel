@@ -17,7 +17,7 @@ namespace LivePostsEvents
     jsonOut["payload"] = obj;
     if (value.subject != Subject::PostCreate)
     {
-      throw std::string("PostCreateEvent::to_json - Subject should be PostCreate");
+      throw std::runtime_error("PostCreateEvent::to_json - Subject should be PostCreate");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
@@ -42,7 +42,7 @@ namespace LivePostsEvents
     jsonOut["payload"] = obj;
     if (value.subject != Subject::PostUpdate)
     {
-      throw std::string("PostUpdateEvent::to_json - Subject should be PostUpdate");
+      throw std::runtime_error("PostUpdateEvent::to_json - Subject should be PostUpdate");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
@@ -69,7 +69,7 @@ namespace LivePostsEvents
     jsonOut["payload"] = obj;
     if (value.subject != Subject::PostPublished)
     {
-      throw std::string("PostPublished::to_json - Subject should be PostPublished");
+      throw std::runtime_error("PostPublished::to_json - Subject should be PostPublished");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
@@ -96,7 +96,7 @@ namespace LivePostsEvents
     jsonOut["payload"] = obj;
     if (value.subject != Subject::PostStage)
     {
-      throw std::string("PostStageEvent::to_json - Subject should be PostStage");
+      throw std::runtime_error("PostStageEvent::to_json - Subject should be PostStage");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
@@ -123,7 +123,7 @@ namespace LivePostsEvents
     jsonOut["payload"] = obj;
     if (value.subject != Subject::ModerateJob)
     {
-      throw std::string("ModerateJobEvent::to_json - Subject should be ModerateJob");
+      throw std::runtime_error("ModerateJobEvent::to_json - Subject should be ModerateJob");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
@@ -158,7 +158,7 @@ namespace LivePostsEvents
     jsonOut["payload"] = obj;
     if (value.subject != Subject::ModerateResult)
     {
-      throw std::string("ModerateResultEvent::to_json - Subject should be ModerateResult");
+      throw std::runtime_error("ModerateResultEvent::to_json - Subject should be ModerateResult");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
