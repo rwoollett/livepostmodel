@@ -40,7 +40,7 @@ namespace LivePostsEvents
     obj["wsId"] = value.wsId;
 
     jsonOut["payload"] = obj;
-    if (value.subject != Subject::PostCreate)
+    if (value.subject != Subject::PostUpdate)
     {
       throw std::string("PostUpdateEvent::to_json - Subject should be PostUpdate");
     }
