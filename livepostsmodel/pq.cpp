@@ -67,8 +67,8 @@ namespace LivePostsModel::PG
       post.content = getString("content");
       post.slug = getString("slug");
 
-      post.title = getString("draftTitle");
-      post.content = getString("draftContent");
+      post.draftTitle = getString("draftTitle");
+      post.draftContent = getString("draftContent");
       // post.draftTitle =
       //     getStringOrDefault(res, rowIndex, fieldColumns, "draftTitle");
 
@@ -89,13 +89,10 @@ namespace LivePostsModel::PG
       post.status = postStatusFromString(getString("status"));
       post.allocated = (getString("allocated") == "t");
     }
-    catch (const std::string &e)
+    catch (const std::exception &e)
     {
-      throw e;
-    }
-    catch (...)
-    {
-      throw "error in fromPQRes";
+      throw std::runtime_error(
+          std::string("LivePostsModel::PG::fromPGRes: ") + e.what());
     }
 
     return post;
