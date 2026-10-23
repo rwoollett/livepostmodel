@@ -75,6 +75,7 @@ namespace LivePostsModel
   struct User
   {
     int id = 0;
+    std::string authUserId;
     std::string authUserEmail;
     std::string name;
 

@@ -37,6 +37,7 @@ namespace LivePostsEvents
   {
     json obj;
     obj["authUserEmail"] = value.authUserEmail;
+    obj["authUserId"] = value.authUserId;
     obj["wsId"] = value.wsId;
 
     jsonOut["payload"] = obj;
@@ -55,6 +56,7 @@ namespace LivePostsEvents
     value.subject = SubjectFromNames.at(subject);
 
     obj.at("authUserEmail").get_to(value.authUserEmail);
+    obj.at("authUserId").get_to(value.authUserId);
     obj.at("wsId").get_to(value.wsId);
   };
 

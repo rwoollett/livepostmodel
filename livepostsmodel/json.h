@@ -149,6 +149,7 @@ namespace LivePostsModel
     jsonOut["id"] = value.id;
     jsonOut["name"] = value.name;
     jsonOut["authUserEmail"] = value.authUserEmail;
+    jsonOut["authUserId"] = value.authUserId;
   }
 
   inline void from_json(json const &jsonIn, User &value)
@@ -159,6 +160,7 @@ namespace LivePostsModel
     }
     jsonIn.at("name").get_to(value.name);
     jsonIn.at("authUserEmail").get_to(value.authUserEmail);
+    jsonIn.at("authUserId").get_to(value.authUserId);
   };
 
   inline void to_json(json &jsonOut, Moderation const &value)

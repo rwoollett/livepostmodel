@@ -25,7 +25,7 @@ namespace LivePostsModel
 
   bool Validate::Users(const LivePostsModel::User &o)
   {
-    return !(o.name.empty() || o.authUserEmail.empty());
+    return !(o.name.empty() || o.authUserId.empty() || o.authUserEmail.empty());
   }
 
   bool Validate::Moderation(const LivePostsModel::Moderation &o)

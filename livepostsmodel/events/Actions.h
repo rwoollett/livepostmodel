@@ -23,6 +23,7 @@ namespace LivePostsEvents
   {
     Subject subject{Subject::UserCreate};
     std::string authUserEmail;
+    std::string authUserId;
     std::string wsId;
 
     UserCreateEvent() = default;
