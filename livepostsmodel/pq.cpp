@@ -110,7 +110,7 @@ namespace LivePostsModel::PG
       };
 
       user.id = std::atoi(getString("id").c_str());
-      user.authId = getString("authId");
+      user.authUserEmail = getString("authUserEmail");
       user.name = getString("name");
     }
     catch (const std::exception &e)

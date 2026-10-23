@@ -33,6 +33,31 @@ namespace LivePostsEvents
     obj.at("wsId").get_to(value.wsId);
   };
 
+  inline void to_json(json &jsonOut, UserCreateEvent const &value)
+  {
+    json obj;
+    obj["authUserEmail"] = value.authUserEmail;
+    obj["wsId"] = value.wsId;
+
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::UserCreate)
+    {
+      throw std::runtime_error("UserCreateEvent::to_json - Subject should be UserCreate");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, UserCreateEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+
+    obj.at("authUserEmail").get_to(value.authUserEmail);
+    obj.at("wsId").get_to(value.wsId);
+  };
+
   inline void to_json(json &jsonOut, PostUpdateEvent const &value)
   {
     json obj;
