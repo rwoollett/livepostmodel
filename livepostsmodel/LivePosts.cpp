@@ -10,7 +10,7 @@ namespace LivePostsModel
 
   bool Validate::PostCreate(const LivePostsModel::PostCreate &o)
   {
-    return !(o.title.empty() || o.content.empty() || o.authorUserId < 0 || o.wsId.empty());
+    return !(o.title.empty() || o.content.empty() || o.wsId.empty());
   }
 
   bool Validate::PostUpdate(const LivePostsModel::PostUpdate &o)

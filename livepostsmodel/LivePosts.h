@@ -49,7 +49,6 @@ namespace LivePostsModel
   {
     std::string title;
     std::string content;
-    int authorUserId = 0;
     std::string wsId;
 
     PostCreate() = default;
