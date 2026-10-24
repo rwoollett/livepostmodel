@@ -28,7 +28,7 @@ namespace LivePostsModel
     jsonOut["title"] = value.title;
     jsonOut["content"] = value.content;
     jsonOut["slug"] = value.slug;
-    
+
     jsonOut["draftTitle"] = value.draftTitle;
     jsonOut["draftContent"] = value.draftContent;
     jsonOut["userId"] = value.userId;
@@ -157,6 +157,20 @@ namespace LivePostsModel
       jsonIn.at("id").get_to(value.id);
     }
     jsonIn.at("name").get_to(value.name);
+    jsonIn.at("authUserEmail").get_to(value.authUserEmail);
+    jsonIn.at("authUserId").get_to(value.authUserId);
+  };
+
+  inline void to_json(json &jsonOut, UserCreate const &value)
+  {
+    jsonOut["wsId"] = value.wsId;
+    jsonOut["authUserEmail"] = value.authUserEmail;
+    jsonOut["authUserId"] = value.authUserId;
+  }
+
+  inline void from_json(json const &jsonIn, UserCreate &value)
+  {
+    jsonIn.at("wsId").get_to(value.wsId);
     jsonIn.at("authUserEmail").get_to(value.authUserEmail);
     jsonIn.at("authUserId").get_to(value.authUserId);
   };

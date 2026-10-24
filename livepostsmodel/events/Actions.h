@@ -29,6 +29,14 @@ namespace LivePostsEvents
     UserCreateEvent() = default;
   };
 
+  struct UserCreatedEvent
+  {
+    Subject subject{Subject::UserCreated};
+    std::string wsId;
+
+    UserCreatedEvent() = default;
+  };
+
   struct PostUpdateEvent
   {
     Subject subject{Subject::PostUpdate};

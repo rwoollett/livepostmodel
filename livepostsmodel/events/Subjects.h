@@ -18,7 +18,8 @@ namespace LivePostsEvents
     PostStage,
     ModerateJob,
     ModerateResult,
-    UserCreate
+    UserCreate,
+    UserCreated
   };
 
   static const std::map<Subject, std::string_view> SubjectNames = {
@@ -28,6 +29,7 @@ namespace LivePostsEvents
       {Subject::ModerateJob, "liveposts_moderate_Job"},        // Producer stream name
       {Subject::PostPublished, "liveposts_post_Published"},    // Publish channel name (to specifed wsId)
       {Subject::PostStage, "liveposts_post_Stage"},            // Publish channel name (broadcasted)
+      {Subject::UserCreated, "liveposts_user_Created"},        // Publish channel name (to specifed wsId)
       {Subject::ModerateResult, "liveposts_moderate_Result"}}; // Publish channel name (to specifed wsId)
 
   static const std::map<std::string_view, Subject> SubjectFromNames = {
@@ -37,6 +39,7 @@ namespace LivePostsEvents
       {"liveposts_moderate_Job", Subject::ModerateJob},
       {"liveposts_post_Published", Subject::PostPublished},
       {"liveposts_post_Stage", Subject::PostStage},
+      {"liveposts_user_Created", Subject::UserCreated},
       {"liveposts_moderate_Result", Subject::ModerateResult}};
 
 }

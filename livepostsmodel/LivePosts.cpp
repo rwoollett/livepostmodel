@@ -28,6 +28,11 @@ namespace LivePostsModel
     return !(o.name.empty() || o.authUserId.empty() || o.authUserEmail.empty());
   }
 
+  bool Validate::UserCreate(const LivePostsModel::UserCreate &o)
+  {
+    return !(o.wsId.empty() || o.authUserId.empty() || o.authUserEmail.empty());
+  }
+
   bool Validate::Moderation(const LivePostsModel::Moderation &o)
   {
     return !(o.id.empty() || o.wsId.empty() || o.value.empty() || o.seq < 0);

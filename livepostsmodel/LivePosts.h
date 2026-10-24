@@ -81,6 +81,15 @@ namespace LivePostsModel
     User() = default;
   };
 
+  struct UserCreate
+  {
+    std::string authUserId;
+    std::string authUserEmail;
+    std::string wsId;
+
+    UserCreate() = default;
+  };
+
   struct Moderation
   {
     std::string id;
@@ -109,6 +118,7 @@ namespace LivePostsModel
     bool PostUpdate(const LivePostsModel::PostUpdate &o);
     bool PostStage(const LivePostsModel::PostStage &o);
     bool Users(const LivePostsModel::User &o);
+    bool UserCreate(const LivePostsModel::UserCreate &o);
     bool Moderation(const LivePostsModel::Moderation &o);
     bool ModerationToken(const LivePostsModel::ModerationToken &o);
     bool ModerationLogits(const LivePostsModel::ModerationLogits &o);
