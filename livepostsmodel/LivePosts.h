@@ -83,8 +83,7 @@ namespace LivePostsModel
 
   struct UserCreate
   {
-    std::string authUserId;
-    std::string authUserEmail;
+    User user;
     std::string wsId;
 
     UserCreate() = default;

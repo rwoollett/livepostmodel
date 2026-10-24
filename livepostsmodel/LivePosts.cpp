@@ -30,7 +30,7 @@ namespace LivePostsModel
 
   bool Validate::UserCreate(const LivePostsModel::UserCreate &o)
   {
-    return !(o.wsId.empty() || o.authUserId.empty() || o.authUserEmail.empty());
+    return !(o.wsId.empty() || o.user.authUserId.empty() || o.user.authUserEmail.empty());
   }
 
   bool Validate::Moderation(const LivePostsModel::Moderation &o)

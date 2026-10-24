@@ -164,15 +164,13 @@ namespace LivePostsModel
   inline void to_json(json &jsonOut, UserCreate const &value)
   {
     jsonOut["wsId"] = value.wsId;
-    jsonOut["authUserEmail"] = value.authUserEmail;
-    jsonOut["authUserId"] = value.authUserId;
+    jsonOut["user"] = value.user;
   }
 
   inline void from_json(json const &jsonIn, UserCreate &value)
   {
     jsonIn.at("wsId").get_to(value.wsId);
-    jsonIn.at("authUserEmail").get_to(value.authUserEmail);
-    jsonIn.at("authUserId").get_to(value.authUserId);
+    jsonIn.at("user").get_to(value.user);
   };
 
   inline void to_json(json &jsonOut, Moderation const &value)
