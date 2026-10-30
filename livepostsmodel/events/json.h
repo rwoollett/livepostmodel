@@ -108,23 +108,24 @@ namespace LivePostsEvents
     obj.at("wsId").get_to(value.wsId);
   };
 
-  inline void to_json(json &jsonOut, PostPublishedEvent const &value)
+  inline void to_json(json &jsonOut, PostStatusChangedEvent const &value)
   {
     json obj;
     obj["postId"] = value.postId;
+    obj["status"] = value.status;
     obj["authorUserId"] = value.authorUserId;
     obj["slug"] = value.slug;
     obj["wsId"] = value.wsId;
 
     jsonOut["payload"] = obj;
-    if (value.subject != Subject::PostPublished)
+    if (value.subject != Subject::PostStatusChanged)
     {
-      throw std::runtime_error("PostPublished::to_json - Subject should be PostPublished");
+      throw std::runtime_error("PostStatusChangedEvent::to_json - Subject should be PostStatusChanged");
     }
     jsonOut["subject"] = SubjectNames.at(value.subject);
   }
 
-  inline void from_json(json const &jsonIn, PostPublishedEvent &value)
+  inline void from_json(json const &jsonIn, PostStatusChangedEvent &value)
   {
     json obj = jsonIn.at("payload");
     std::string subject;
@@ -132,6 +133,7 @@ namespace LivePostsEvents
     value.subject = SubjectFromNames.at(subject);
 
     obj.at("postId").get_to(value.postId);
+    obj.at("status").get_to(value.status);
     obj.at("authorUserId").get_to(value.authorUserId);
     obj.at("slug").get_to(value.slug);
     obj.at("wsId").get_to(value.wsId);

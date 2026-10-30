@@ -3,9 +3,12 @@
 #define EVENT_LIVEPOST_ACTIONS_H
 
 #include "Subjects.h"
+#include "../LivePosts.h"
 #include <string>
 #include <chrono>
 #include <vector>
+
+using LivePostsModel::PostStatus;
 
 namespace LivePostsEvents
 {
@@ -46,18 +49,31 @@ namespace LivePostsEvents
     PostUpdateEvent() = default;
   };
 
-  struct PostPublishedEvent
+  // struct PostPublishedEvent
+  // {
+  //   Subject subject{Subject::PostPublished};
+  //   int postId = 0;
+  //   int authorUserId = 0;
+  //   std::string slug;
+  //   std::string wsId;
+
+  //   PostPublishedEvent() = default;
+  // };
+
+  struct PostStatusChangedEvent
   {
-    Subject subject{Subject::PostPublished};
+    Subject subject{Subject::PostStatusChanged};
     int postId = 0;
     int authorUserId = 0;
+    PostStatus status{PostStatus::Draft};
+
     std::string slug;
     std::string wsId;
 
-    PostPublishedEvent() = default;
+    PostStatusChangedEvent() = default;
   };
 
-  struct PostStageEvent
+  struct PostStageEvent /*prerendering job published event - also the produedced stream name ** */
   {
     Subject subject{Subject::PostStage};
     int id = 0;
