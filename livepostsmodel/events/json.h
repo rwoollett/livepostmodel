@@ -164,6 +164,31 @@ namespace LivePostsEvents
     obj.at("slug").get_to(value.slug);
   };
 
+  inline void to_json(json &jsonOut, PostRenderEvent const &value)
+  {
+    json obj;
+    obj["id"] = value.id;
+    obj["slug"] = value.slug;
+
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::PostStage)
+    {
+      throw std::runtime_error("PostRenderEvent::to_json - Subject should be PostRender");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, PostRenderEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+
+    obj.at("id").get_to(value.id);
+    obj.at("slug").get_to(value.slug);
+  };
+
   inline void to_json(json &jsonOut, ModerateJobEvent const &value)
   {
     json obj;

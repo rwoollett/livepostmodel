@@ -73,13 +73,22 @@ namespace LivePostsEvents
     PostStatusChangedEvent() = default;
   };
 
-  struct PostStageEvent /*prerendering job published event - also the produedced stream name ** */
+  struct PostStageEvent /* prerendering broadcast event */
   {
     Subject subject{Subject::PostStage};
     int id = 0;
     std::string slug;
 
     PostStageEvent() = default;
+  };
+
+  struct PostRenderEvent /* prerendering job stream name */
+  {
+    Subject subject{Subject::PostRender};
+    int id = 0;
+    std::string slug;
+
+    PostRenderEvent() = default;
   };
 
   struct ModerateJobEvent
