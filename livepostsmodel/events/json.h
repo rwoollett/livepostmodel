@@ -171,7 +171,7 @@ namespace LivePostsEvents
     obj["slug"] = value.slug;
 
     jsonOut["payload"] = obj;
-    if (value.subject != Subject::PostStage)
+    if (value.subject != Subject::PostRender)
     {
       throw std::runtime_error("PostRenderEvent::to_json - Subject should be PostRender");
     }
