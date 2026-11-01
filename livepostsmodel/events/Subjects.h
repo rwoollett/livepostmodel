@@ -90,6 +90,7 @@ namespace LivePostsEvents
   enum class Subject
   {
     Invalid = -1,
+    PostModerate,
     PostCreate,
     PostUpdate,
     PostStatusChanged,
@@ -102,25 +103,27 @@ namespace LivePostsEvents
   };
 
   static const std::map<Subject, std::string_view> SubjectNames = {
-      {Subject::UserCreate, "liveposts_user_Create"},               // Producer stream name
-      {Subject::PostCreate, "liveposts_post_Create"},               // Producer stream name
-      {Subject::PostUpdate, "liveposts_post_Update"},               // Producer stream name
-      {Subject::ModerateJob, "liveposts_moderate_Job"},             // Producer stream name
+      {Subject::PostModerate, "liveposts_post_Moderate"},           // Producer stream name (produced at create and update route of svc)
+      {Subject::PostCreate, "liveposts_post_Create"},               // Producer stream name (To be removed)
+      {Subject::PostUpdate, "liveposts_post_Update"},               // Producer stream name (To be removed)
       {Subject::PostRender, "liveposts_post_Render"},               // Producer stream name
       {Subject::PostStatusChanged, "liveposts_post_StatusChanged"}, // Publish channel name (to specifed wsId)
       {Subject::PostStage, "liveposts_post_Stage"},                 // Publish channel name (broadcasted)
+      {Subject::UserCreate, "liveposts_user_Create"},               // Producer stream name
       {Subject::UserCreated, "liveposts_user_Created"},             // Publish channel name (to specifed wsId)
+      {Subject::ModerateJob, "liveposts_moderate_Job"},             // Producer stream name
       {Subject::ModerateResult, "liveposts_moderate_Result"}};      // Publish channel name (to specifed wsId)
 
   static const std::map<std::string_view, Subject> SubjectFromNames = {
+      {"liveposts_post_Moderate", Subject::PostModerate},
       {"liveposts_post_Create", Subject::PostCreate},
-      {"liveposts_user_Create", Subject::UserCreate},
       {"liveposts_post_Update", Subject::PostUpdate},
-      {"liveposts_moderate_Job", Subject::ModerateJob},
       {"liveposts_post_Render", Subject::PostRender},
       {"liveposts_post_StatusChanged", Subject::PostStatusChanged},
       {"liveposts_post_Stage", Subject::PostStage},
+      {"liveposts_user_Create", Subject::UserCreate},
       {"liveposts_user_Created", Subject::UserCreated},
+      {"liveposts_moderate_Job", Subject::ModerateJob},
       {"liveposts_moderate_Result", Subject::ModerateResult}};
 
 }

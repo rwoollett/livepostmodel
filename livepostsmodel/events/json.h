@@ -1,12 +1,23 @@
 #pragma once
 
 #include "Actions.h"
+#include "FlowMode.h"
 #include <string>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
 namespace LivePostsEvents
 {
+  inline void to_json(json &j, const FlowMode &status)
+  {
+    j = to_string(status);
+  }
+
+  inline void from_json(const json &j, FlowMode &status)
+  {
+    status = flowModeFromString(
+        j.get<std::string>());
+  }
 
   inline void to_json(json &jsonOut, PostCreateEvent const &value)
   {
@@ -33,55 +44,6 @@ namespace LivePostsEvents
     obj.at("wsId").get_to(value.wsId);
   };
 
-  inline void to_json(json &jsonOut, UserCreateEvent const &value)
-  {
-    json obj;
-    obj["authUserEmail"] = value.authUserEmail;
-    obj["authUserId"] = value.authUserId;
-    obj["wsId"] = value.wsId;
-
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::UserCreate)
-    {
-      throw std::runtime_error("UserCreateEvent::to_json - Subject should be UserCreate");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, UserCreateEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-
-    obj.at("authUserEmail").get_to(value.authUserEmail);
-    obj.at("authUserId").get_to(value.authUserId);
-    obj.at("wsId").get_to(value.wsId);
-  };
-
-  inline void to_json(json &jsonOut, UserCreatedEvent const &value)
-  {
-    json obj;
-    obj["wsId"] = value.wsId;
-
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::UserCreated)
-    {
-      throw std::runtime_error("UserCreatedEvent::to_json - Subject should be UserCreated");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, UserCreatedEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-
-    obj.at("wsId").get_to(value.wsId);
-  };
 
   inline void to_json(json &jsonOut, PostUpdateEvent const &value)
   {
@@ -106,6 +68,33 @@ namespace LivePostsEvents
 
     obj.at("id").get_to(value.id);
     obj.at("wsId").get_to(value.wsId);
+  };
+
+    inline void to_json(json &jsonOut, PostModerateEvent const &value)
+  {
+    json obj;
+    obj["postId"] = value.postId;
+    obj["wsId"] = value.wsId;
+    obj["flowMode"] = value.flowMode;
+
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::PostModerate)
+    {
+      throw std::runtime_error("PostModerateEvent::to_json - Subject should be PostModerate");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, PostModerateEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+
+    obj.at("postId").get_to(value.postId);
+    obj.at("wsId").get_to(value.wsId);
+    obj.at("flowMode").get_to(value.flowMode);
   };
 
   inline void to_json(json &jsonOut, PostStatusChangedEvent const &value)
@@ -187,6 +176,56 @@ namespace LivePostsEvents
 
     obj.at("id").get_to(value.id);
     obj.at("slug").get_to(value.slug);
+  };
+
+  inline void to_json(json &jsonOut, UserCreateEvent const &value)
+  {
+    json obj;
+    obj["authUserEmail"] = value.authUserEmail;
+    obj["authUserId"] = value.authUserId;
+    obj["wsId"] = value.wsId;
+
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::UserCreate)
+    {
+      throw std::runtime_error("UserCreateEvent::to_json - Subject should be UserCreate");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, UserCreateEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+
+    obj.at("authUserEmail").get_to(value.authUserEmail);
+    obj.at("authUserId").get_to(value.authUserId);
+    obj.at("wsId").get_to(value.wsId);
+  };
+
+  inline void to_json(json &jsonOut, UserCreatedEvent const &value)
+  {
+    json obj;
+    obj["wsId"] = value.wsId;
+
+    jsonOut["payload"] = obj;
+    if (value.subject != Subject::UserCreated)
+    {
+      throw std::runtime_error("UserCreatedEvent::to_json - Subject should be UserCreated");
+    }
+    jsonOut["subject"] = SubjectNames.at(value.subject);
+  }
+
+  inline void from_json(json const &jsonIn, UserCreatedEvent &value)
+  {
+    json obj = jsonIn.at("payload");
+    std::string subject;
+    jsonIn.at("subject").get_to(subject);
+    value.subject = SubjectFromNames.at(subject);
+
+    obj.at("wsId").get_to(value.wsId);
   };
 
   inline void to_json(json &jsonOut, ModerateJobEvent const &value)

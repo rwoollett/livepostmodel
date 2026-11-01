@@ -13,13 +13,10 @@ using LivePostsModel::PostStatus;
 namespace LivePostsEvents
 {
 
-  struct PostCreateEvent
+  enum class FlowMode
   {
-    Subject subject{Subject::PostCreate};
-    int id = 0;
-    std::string wsId;
-
-    PostCreateEvent() = default;
+    Create,
+    Update
   };
 
   struct UserCreateEvent
@@ -40,6 +37,15 @@ namespace LivePostsEvents
     UserCreatedEvent() = default;
   };
 
+  struct PostCreateEvent
+  {
+    Subject subject{Subject::PostCreate};
+    int id = 0;
+    std::string wsId;
+
+    PostCreateEvent() = default;
+  };
+
   struct PostUpdateEvent
   {
     Subject subject{Subject::PostUpdate};
@@ -49,6 +55,15 @@ namespace LivePostsEvents
     PostUpdateEvent() = default;
   };
 
+  struct PostModerateEvent
+  {
+    Subject subject{Subject::PostModerate};
+    int postId = 0;
+    std::string wsId;
+    FlowMode flowMode{FlowMode::Create}; // default value
+
+    PostModerateEvent() = default;
+  };
   // struct PostPublishedEvent
   // {
   //   Subject subject{Subject::PostPublished};

@@ -6,6 +6,7 @@ add_library(LivePostsModel
   LivePosts.h
   Events.h
   events/Actions.h
+  events/FlowMode.h
   events/json.h
   events/Subjects.h
   PostStatus.h
