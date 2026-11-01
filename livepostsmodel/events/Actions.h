@@ -37,24 +37,6 @@ namespace LivePostsEvents
     UserCreatedEvent() = default;
   };
 
-  struct PostCreateEvent
-  {
-    Subject subject{Subject::PostCreate};
-    int id = 0;
-    std::string wsId;
-
-    PostCreateEvent() = default;
-  };
-
-  struct PostUpdateEvent
-  {
-    Subject subject{Subject::PostUpdate};
-    int id = 0;
-    std::string wsId;
-
-    PostUpdateEvent() = default;
-  };
-
   struct PostModerateEvent
   {
     Subject subject{Subject::PostModerate};
@@ -64,16 +46,6 @@ namespace LivePostsEvents
 
     PostModerateEvent() = default;
   };
-  // struct PostPublishedEvent
-  // {
-  //   Subject subject{Subject::PostPublished};
-  //   int postId = 0;
-  //   int authorUserId = 0;
-  //   std::string slug;
-  //   std::string wsId;
-
-  //   PostPublishedEvent() = default;
-  // };
 
   struct PostStatusChangedEvent
   {

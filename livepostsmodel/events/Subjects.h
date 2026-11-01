@@ -91,8 +91,6 @@ namespace LivePostsEvents
   {
     Invalid = -1,
     PostModerate,
-    PostCreate,
-    PostUpdate,
     PostStatusChanged,
     PostStage,
     PostRender,
@@ -104,8 +102,6 @@ namespace LivePostsEvents
 
   static const std::map<Subject, std::string_view> SubjectNames = {
       {Subject::PostModerate, "liveposts_post_Moderate"},           // Producer stream name (produced at create and update route of svc)
-      {Subject::PostCreate, "liveposts_post_Create"},               // Producer stream name (To be removed)
-      {Subject::PostUpdate, "liveposts_post_Update"},               // Producer stream name (To be removed)
       {Subject::PostRender, "liveposts_post_Render"},               // Producer stream name
       {Subject::PostStatusChanged, "liveposts_post_StatusChanged"}, // Publish channel name (to specifed wsId)
       {Subject::PostStage, "liveposts_post_Stage"},                 // Publish channel name (broadcasted)
@@ -116,8 +112,6 @@ namespace LivePostsEvents
 
   static const std::map<std::string_view, Subject> SubjectFromNames = {
       {"liveposts_post_Moderate", Subject::PostModerate},
-      {"liveposts_post_Create", Subject::PostCreate},
-      {"liveposts_post_Update", Subject::PostUpdate},
       {"liveposts_post_Render", Subject::PostRender},
       {"liveposts_post_StatusChanged", Subject::PostStatusChanged},
       {"liveposts_post_Stage", Subject::PostStage},

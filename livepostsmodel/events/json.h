@@ -19,58 +19,7 @@ namespace LivePostsEvents
         j.get<std::string>());
   }
 
-  inline void to_json(json &jsonOut, PostCreateEvent const &value)
-  {
-    json obj;
-    obj["id"] = value.id;
-    obj["wsId"] = value.wsId;
-
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::PostCreate)
-    {
-      throw std::runtime_error("PostCreateEvent::to_json - Subject should be PostCreate");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, PostCreateEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-
-    obj.at("id").get_to(value.id);
-    obj.at("wsId").get_to(value.wsId);
-  };
-
-
-  inline void to_json(json &jsonOut, PostUpdateEvent const &value)
-  {
-    json obj;
-    obj["id"] = value.id;
-    obj["wsId"] = value.wsId;
-
-    jsonOut["payload"] = obj;
-    if (value.subject != Subject::PostUpdate)
-    {
-      throw std::runtime_error("PostUpdateEvent::to_json - Subject should be PostUpdate");
-    }
-    jsonOut["subject"] = SubjectNames.at(value.subject);
-  }
-
-  inline void from_json(json const &jsonIn, PostUpdateEvent &value)
-  {
-    json obj = jsonIn.at("payload");
-    std::string subject;
-    jsonIn.at("subject").get_to(subject);
-    value.subject = SubjectFromNames.at(subject);
-
-    obj.at("id").get_to(value.id);
-    obj.at("wsId").get_to(value.wsId);
-  };
-
-    inline void to_json(json &jsonOut, PostModerateEvent const &value)
+  inline void to_json(json &jsonOut, PostModerateEvent const &value)
   {
     json obj;
     obj["postId"] = value.postId;
