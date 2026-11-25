@@ -10,6 +10,7 @@ add_library(LivePostsModel
   events/json.h
   events/Subjects.h
   PostStatus.h
+  RenderStatus.h
   json.h
   pq.cpp
   pq.h

@@ -2,6 +2,7 @@
 
 #include "LivePosts.h"
 #include "PostStatus.h"
+#include "RenderStatus.h"
 
 #ifdef LIBPQ_FOUND
 #include <libpq-fe.h>

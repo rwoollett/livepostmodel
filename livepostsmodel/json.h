@@ -2,6 +2,7 @@
 
 #include "LivePosts.h"
 #include "PostStatus.h"
+#include "RenderStatus.h"
 #include "timestamp/timestamp.h"
 #include <string>
 #include <nlohmann/json.hpp>
@@ -19,6 +20,17 @@ namespace LivePostsModel
   inline void from_json(const json &j, PostStatus &status)
   {
     status = postStatusFromString(
+        j.get<std::string>());
+  }
+
+  inline void to_json(json &j, const RenderStatus &status)
+  {
+    j = to_string(status);
+  }
+
+  inline void from_json(const json &j, RenderStatus &status)
+  {
+    status = renderStatusFromString(
         j.get<std::string>());
   }
 
@@ -44,6 +56,7 @@ namespace LivePostsModel
     jsonOut["reactions"] = reactions;
 
     jsonOut["status"] = value.status;
+    jsonOut["renderStatus"] = value.renderStatus;
     jsonOut["allocated"] = value.allocated;
   }
 
@@ -95,6 +108,10 @@ namespace LivePostsModel
     if (jsonIn.contains("status"))
     {
       jsonIn.at("status").get_to(value.status);
+    }
+    if (jsonIn.contains("renderStatus"))
+    {
+      jsonIn.at("renderStatus").get_to(value.renderStatus);
     }
     if (jsonIn.contains("allocated"))
     {

@@ -87,6 +87,7 @@ namespace LivePostsModel::PG
       post.rocket = std::atoi(getString("rocket").c_str());
       post.eyes = std::atoi(getString("eyes").c_str());
       post.status = postStatusFromString(getString("status"));
+      post.renderStatus = renderStatusFromString(getString("renderStatus"));
       post.allocated = (getString("allocated") == "t");
     }
     catch (const std::exception &e)

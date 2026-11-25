@@ -21,6 +21,13 @@ namespace LivePostsModel
     Rejected
   };
 
+  enum class RenderStatus
+  {
+    Pending,
+    Completed,
+    Failed
+  };
+
   // Define a struct to encapsulate Post table insert, update and query
   struct Post
   {
@@ -40,6 +47,7 @@ namespace LivePostsModel
     int rocket = 0;
     int eyes = 0;
     PostStatus status{PostStatus::Draft};
+    RenderStatus renderStatus{RenderStatus::Pending};
     bool allocated = false;
 
     Post() = default;
